@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FormControl } from '@angular/forms';
+//import { FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 /**
  * Generated class for the LoginPage page.
@@ -39,7 +39,7 @@ export class LoginPage {
 
   private todo : FormGroup;
 
-  constructor( private formBuilder: FormBuilder,private auth: AuthService ) {
+  constructor( private formBuilder: FormBuilder,private auth: AuthService,public navCtrl: NavController ) {
     this.todo = this.formBuilder.group({
       email: ['', Validators.required],
       password: [''],
@@ -50,7 +50,7 @@ export class LoginPage {
     let credentials=this.todo.value;
     this.auth.signInWithEmail(credentials)
 			.then(
-				// () => this.navCtrl.setRoot(HomePage),
+				 () => this.navCtrl.setRoot(TabsPage),
 				// error => this.loginError = error.message
       );
       
