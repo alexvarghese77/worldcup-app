@@ -14,11 +14,15 @@ import { LoginPage } from '../pages/login/login';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = LoginPage;
+  rootPage: any = LoginPage;
   //rootPage:any = TabsPage;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string; component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen
+  ) {
     this.initializeApp();
 
     // // used for an example of ngFor and navigation
@@ -27,14 +31,16 @@ export class MyApp {
       { title: 'Leaderboard', component: TabsPage },
       { title: 'Howto Play', component: AboutPage },
       { title: 'FAQ', component: ContactPage },
-      { title: 'Terms and conditions', component: ContactPage },
+      { title: 'Terms and conditions', component: ContactPage }
     ];
-
   }
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+  logout() {
+    this.nav.setRoot(LoginPage);
   }
 
   initializeApp() {

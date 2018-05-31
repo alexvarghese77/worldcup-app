@@ -36,16 +36,22 @@
       <form [formGroup]="todo" (ngSubmit)="logForm()">
         <ion-item>
           <ion-label>Email</ion-label>
-          <ion-input type="text" formControlName="email" value="alex.varghese77@gmail.com"></ion-input>
+          <ion-input type="text" formControlName="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Password</ion-label>
-          <ion-input type="password" formControlName="password" value="123456789"></ion-input>
+          <ion-input type="password" formControlName="password"></ion-input>
         </ion-item>
-        <button ion-button type="submit" [disabled]="!todo.valid">Submit</button>
+        <button ion-button type="submit" [disabled]="!todo.valid">Login</button>
+
       </form>
+      <button ion-button (click)="signup()">SignUp</button>
+      <div>
+
+      </div>
 
     </div>
+
   </div>
 
 </ion-content>
