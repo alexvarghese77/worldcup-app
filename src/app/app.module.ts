@@ -2,11 +2,12 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { FormsModule,ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FIREBASE_CONFIG } from '../config/config';
 import { NgxErrorsModule } from '@ultimate/ngxerrors';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -16,24 +17,18 @@ import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {AuthService} from '../services/auth.service'
+import { AuthService } from '../services/auth.service';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage,
-    LoginPage
-  ],
+  declarations: [MyApp, AboutPage, ContactPage, HomePage, TabsPage, LoginPage],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    NgxErrorsModule
+    NgxErrorsModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,7 +44,7 @@ import {AuthService} from '../services/auth.service'
     SplashScreen,
     AngularFireAuth,
     AuthService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
 export class AppModule {}

@@ -1,0 +1,164 @@
+{
+  "TeamList": [
+    {
+      "id": 1,
+      "name": "Russia",
+      "fifaCode": "RUS"
+    },
+    {
+      "id": 2,
+      "name": "SaudiArabia",
+      "fifaCode": "KSA"
+    },
+    {
+      "id": 3,
+      "name": "Egypt",
+      "fifaCode": "EGY"
+    },
+    {
+      "id": 4,
+      "name": "Uruguay",
+      "fifaCode": "URU"
+    },
+    {
+      "id": 5,
+      "name": "Portugal",
+      "fifaCode": "POR"
+    },
+    {
+      "id": 6,
+      "name": "Spain",
+      "fifaCode": "ESP"
+    },
+    {
+      "id": 7,
+      "name": "Morocco",
+      "fifaCode": "MAR"
+    },
+    {
+      "id": 8,
+      "name": "Iran",
+      "fifaCode": "IRN"
+    },
+    {
+      "id": 9,
+      "name": "France",
+      "fifaCode": "FRA"
+    },
+    {
+      "id": 10,
+      "name": "Australia",
+      "fifaCode": "AUS"
+    },
+    {
+      "id": 11,
+      "name": "Peru",
+      "fifaCode": "PER"
+    },
+    {
+      "id": 12,
+      "name": "Denmark",
+      "fifaCode": "DEN"
+    },
+    {
+      "id": 13,
+      "name": "Argentina",
+      "fifaCode": "ARG"
+    },
+    {
+      "id": 14,
+      "name": "Iceland",
+      "fifaCode": "ISL"
+    },
+    {
+      "id": 15,
+      "name": "Croatia",
+      "fifaCode": "CRO"
+    },
+    {
+      "id": 16,
+      "name": "Nigeria",
+      "fifaCode": "NGA"
+    },
+    {
+      "id": 17,
+      "name": "Brazil",
+      "fifaCode": "BRA"
+    },
+    {
+      "id": 18,
+      "name": "Switzerland",
+      "fifaCode": "SUI"
+    },
+    {
+      "id": 19,
+      "name": "CostaRica",
+      "fifaCode": "CRC"
+    },
+    {
+      "id": 20,
+      "name": "Serbia",
+      "fifaCode": "SRB"
+    },
+    {
+      "id": 21,
+      "name": "Germany",
+      "fifaCode": "GER"
+    },
+    {
+      "id": 22,
+      "name": "Mexico",
+      "fifaCode": "MEX"
+    },
+    {
+      "id": 23,
+      "name": "Sweden",
+      "fifaCode": "SWE"
+    },
+    {
+      "id": 24,
+      "name": "SouthKorea",
+      "fifaCode": "KOR"
+    },
+    {
+      "id": 25,
+      "name": "Belgium",
+      "fifaCode": "BEL"
+    },
+    {
+      "id": 26,
+      "name": "Panama",
+      "fifaCode": "PAN"
+    },
+    {
+      "id": 27,
+      "name": "Tunisia",
+      "fifaCode": "TUN"
+    },
+    {
+      "id": 28,
+      "name": "England",
+      "fifaCode": "ENG"
+    },
+    {
+      "id": 29,
+      "name": "Poland",
+      "fifaCode": "POL"
+    },
+    {
+      "id": 30,
+      "name": "Senegal",
+      "fifaCode": "SEN"
+    },
+    {
+      "id": 31,
+      "name": "Colombia",
+      "fifaCode": "COL"
+    },
+    {
+      "id": 32,
+      "name": "Japan",
+      "fifaCode": "JPN"
+    }
+  ]
+}

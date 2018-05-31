@@ -12,13 +12,11 @@ import { AuthService } from '../../services/auth.service';
  */
 
 @IonicPage()
-@Component({ 
+@Component({
   selector: 'page-login',
-  templateUrl: 'login.html',
+  templateUrl: 'login.html'
 })
 export class LoginPage {
-
-  
   // email = new FormControl();
   // password = new FormControl();
 
@@ -36,30 +34,30 @@ export class LoginPage {
   //   //this.navCtrl.setRoot(TabsPage);
   // }
 
-
-  private todo : FormGroup;
-
-  constructor( private formBuilder: FormBuilder,private auth: AuthService,public navCtrl: NavController ) {
+  private todo: FormGroup;
+  constructor(
+    private formBuilder: FormBuilder,
+    private auth: AuthService,
+    public navCtrl: NavController
+  ) {
     this.todo = this.formBuilder.group({
       email: ['', Validators.required],
-      password: [''],
+      password: ['']
     });
   }
-  logForm(){
-    console.log(this.todo.value)
-    let credentials=this.todo.value;
-    this.auth.signInWithEmail(credentials)
-			.then(
-				 () => this.navCtrl.setRoot(TabsPage),
-				// error => this.loginError = error.message
-      );
-      
+  logForm() {
+    console.log(this.todo.value);
+    let credentials = this.todo.value;
+    this.auth.signInWithEmail(credentials).then(
+      () => this.navCtrl.setRoot(TabsPage)
+      // error => this.loginError = error.message
+    );
 
-
-
-      // this.auth.signUp(credentials).then(
-      //   // () => this.navCtrl.setRoot(HomePage),
-      //   // error => this.signupError = error.message
-      // );
+    // this.auth
+    //   .signUp(credentials)
+    //   .then
+    //   // () => this.navCtrl.setRoot(HomePage),
+    //   // error => this.signupError = error.message
+    //   ();
   }
 }
