@@ -25,14 +25,24 @@ export class AuthService {
     );
   }
 
-  signUp(phoneNumberString, appVerifier) {
-    // return this.afAuth.auth.createUserWithEmailAndPassword(
-    //   credentials.email,
-    //   credentials.password
-    // );
-    return firebase
-      .auth()
-      .signInWithPhoneNumber(phoneNumberString, appVerifier);
+  // return firebase
+  signUp(credentials) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(
+      credentials.email,
+      credentials.password
+    );
+
+    //   .auth()
+    //   .signInWithPhoneNumber(phoneNumberString, appVerifier);
+  }
+  updateUser(credentials) {
+    const ref: firebase.database.Reference = firebase.database().ref(`/user/`);
+    ref
+      .child(credentials.email.replace(/\./g, '_'))
+      .update({ name: credentials.name });
+    ref
+      .child(credentials.email.replace(/\./g, '_'))
+      .update({ mobile: credentials.mobile });
   }
   getTodaysMatchs() {
     // let matches = this.fixture.filter(match => {

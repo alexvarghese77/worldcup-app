@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { LoginPage } from '../login/login';
 import firebase from 'firebase';
+import { LocalStorage } from '../../services/localstorage.service';
 /**
  * Generated class for the SignupPage page.
  *
@@ -19,27 +20,37 @@ import firebase from 'firebase';
   templateUrl: 'signup.html'
 })
 export class SignupPage {
-  // private signup: FormGroup;
-  // constructor(
-  //   private formBuilder: FormBuilder,
-  //   private auth: AuthService,
-  //   public navCtrl: NavController
-  // ) {
-  //   this.signup = this.formBuilder.group({
-  //     email: ['', Validators.required],
-  //     password: ['']
-  //   });
-  // }
-  // logForm() {
-  //   console.log(this.signup.value);
-  //   let credentials = this.signup.value;
-  //   this.auth.signUp(credentials).then(() => this.navCtrl.setRoot(TabsPage));
-  // }
-  // login() {
-  //   this.navCtrl.setRoot(LoginPage);
-  // }
+  private signup: FormGroup;
+  constructor(
+    private formBuilder: FormBuilder,
+    private auth: AuthService,
+    public navCtrl: NavController,
+    private storage: LocalStorage
+  ) {
+    this.signup = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      mobile: [''],
+      password: ['', Validators.required],
+      cpassword: ['']
+    });
+  }
+  logForm() {
+    console.log(this.signup.value);
+    let credentials = this.signup.value;
 
-  public recaptchaVerifier: firebase.auth.RecaptchaVerifier;
+    //*******mobile number varification code here */
+    this.auth.signUp(credentials).then(() => {
+      this.auth.updateUser(credentials);
+      this.storage.setAuth(credentials);
+      this.navCtrl.setRoot(TabsPage);
+    });
+  }
+  login() {
+    this.navCtrl.setRoot(LoginPage);
+  }
+
+  /* public recaptchaVerifier: firebase.auth.RecaptchaVerifier;
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -97,5 +108,5 @@ export class SignupPage {
       .catch(function(error) {
         console.error('SMS not sent', error);
       });
-  }
+  }*/
 }

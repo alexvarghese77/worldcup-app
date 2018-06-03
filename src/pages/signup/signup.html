@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<!-- <ion-content padding>
+<ion-content padding>
   <div class="container">
 
 
@@ -21,12 +21,24 @@
 
       <form [formGroup]="signup" (ngSubmit)="logForm()">
         <ion-item>
+          <ion-label>Name</ion-label>
+          <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label>Email</ion-label>
           <ion-input type="text" formControlName="email"></ion-input>
         </ion-item>
         <ion-item>
+          <ion-label>Mobile</ion-label>
+          <ion-input type="text" formControlName="mobile"></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label>Password</ion-label>
           <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Confirm Password</ion-label>
+          <ion-input type="password" formControlName="cpassword"></ion-input>
         </ion-item>
         <button ion-button type="submit" [disabled]="!signup.valid">SignUp</button>
       </form>
@@ -34,9 +46,9 @@
     </div>
   </div>
 
-</ion-content> -->
+</ion-content>
 
-<ion-content padding>
+<!-- <ion-content padding>
   <div id="recaptcha-container"></div>
 
   <ion-item>
@@ -48,4 +60,4 @@
     Sign In
   </button>
 
-</ion-content>
+</ion-content> -->
