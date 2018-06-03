@@ -1,5 +1,9 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu">
+      </ion-icon>
+    </button>
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
@@ -18,7 +22,7 @@
     </div>
   </div>
 
-  <ion-card *ngFor="let item of todaysMatches">
+  <ion-card *ngFor="let item of todaysMatches" (click)="goToPrediction(item)">
     <ion-card-header>
       {{item.date}}
     </ion-card-header>

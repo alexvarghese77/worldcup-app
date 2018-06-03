@@ -9,22 +9,34 @@ import { ContactPage } from '../pages/contact/contact';
 //import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 
+import { LocalStorage } from '../services/localstorage.service';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = LoginPage;
+  rootPage: any ;
   //rootPage:any = TabsPage;
   pages: Array<{ title: string; component: any }>;
-
+  
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    private storage:LocalStorage
   ) {
-    this.initializeApp();
-
+  
+    this.storage.getAuth().then((result)=>{
+      console.log("authdetails",result);
+      result?this.rootPage=TabsPage:this.rootPage=LoginPage;
+      this.initializeApp();
+    });
+    
+    
+    
+    
+    //debugger;
     // // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Leaderboard', component: TabsPage },
@@ -40,6 +52,7 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
   logout() {
+    this.storage.clearstorage();
     this.nav.setRoot(LoginPage);
   }
 

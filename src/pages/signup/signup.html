@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<!-- <ion-content padding>
   <div class="container">
 
 
@@ -33,5 +33,19 @@
       <button ion-button (click)="login()">Login</button>
     </div>
   </div>
+
+</ion-content> -->
+
+<ion-content padding>
+  <div id="recaptcha-container"></div>
+
+  <ion-item>
+    <ion-label stacked>Phone Number</ion-label>
+    <ion-input type="number" [(ngModel)]="phoneNumber"></ion-input>
+  </ion-item>
+
+  <button ion-button id="sign-in-button" (click)="signIn(phoneNumber)">
+    Sign In
+  </button>
 
 </ion-content>

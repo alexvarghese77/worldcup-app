@@ -9,28 +9,12 @@ export class AuthService {
   private user: firebase.User;
   //database = firebase.database();
   //private noteListRef = this.db.database.ref().child('TeamList');
-  teamList = [];
   fixture = [];
 
   constructor(public afAuth: AngularFireAuth) {
     afAuth.authState.subscribe(user => {
       this.user = user;
       console.log('state of user', this.user);
-    });
-
-    //read team list data from firebase
-    const teamList: firebase.database.Reference = firebase
-      .database()
-      .ref(`/TeamList/`);
-    teamList.on('value', personSnapshot => {
-      this.teamList = personSnapshot.val();
-    });
-    //read fixture from firebase
-    const fixture: firebase.database.Reference = firebase
-      .database()
-      .ref(`/fixtures/`);
-    fixture.on('value', personSnapshot => {
-      this.fixture = personSnapshot.val();
     });
   }
   signInWithEmail(credentials) {
@@ -41,17 +25,41 @@ export class AuthService {
     );
   }
 
-  signUp(credentials) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(
-      credentials.email,
-      credentials.password
-    );
+  signUp(phoneNumberString, appVerifier) {
+    // return this.afAuth.auth.createUserWithEmailAndPassword(
+    //   credentials.email,
+    //   credentials.password
+    // );
+    return firebase
+      .auth()
+      .signInWithPhoneNumber(phoneNumberString, appVerifier);
   }
   getTodaysMatchs() {
     // let matches = this.fixture.filter(match => {
     //   return match.date == '28-06-2018';
     // });
     //return matches;
-    return this.fixture;
+
+    const fixture: firebase.database.Reference = firebase
+      .database()
+      .ref(`/fixtures/`);
+    //  fixture.on('value', personSnapshot => {
+    //  console.log("value updated");
+    //   return personSnapshot.val();
+
+    // });
+    console.log('method called');
+
+    return new Promise(function(resolve, reject) {
+      fixture.on('value', personSnapshot => {
+        console.log('value updated in promis');
+        resolve(personSnapshot.val());
+      });
+    });
+
+    //console.log("shdkjhnskj",matchdetis)
+    // matchdetis.then((result)=>{
+    //   console.log(result);
+    // }).catch(()=>"erreo")
   }
 }
