@@ -7,7 +7,7 @@
   height: 30% !important;
   margin: 0 auto;
   display: block !important;
-  margin-top: 5%;
+  margin-top: 2%;
 }
 .inputcontainer {
   margin-top: 5%;
@@ -16,8 +16,27 @@
   color: white;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 20px;
+  margin-top: 2%;
 }
 ion-input {
   margin-top: 5%;
   padding: 0;
+}
+.signUpButton {
+  width: 80%;
+  background-color: forestgreen;
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+  color: white;
+  margin-top: 5%;
+}
+.backToLoginButton {
+  width: 80%;
+  background-color: forestgreen;
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+  color: white;
+  margin-top: 1%;
 }

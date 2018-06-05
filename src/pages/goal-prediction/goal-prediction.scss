@@ -1,3 +1,11 @@
-page-goal-prediction {
-
+.predictionContainer {
+  background: url(../../assets/imgs/homebg.png);
+  font-family: 'QUICKSAND-REGULAR';
+}
+.goalInput {
+  width: 60%;
+  text-align: center;
+  margin-left: 24%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
 }

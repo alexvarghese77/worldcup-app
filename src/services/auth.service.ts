@@ -72,4 +72,19 @@ export class AuthService {
     //   console.log(result);
     // }).catch(()=>"erreo")
   }
+  getCurrentUser() {
+    var userID = this.user.email.replace(/\./g, '_');
+    const userDetails: firebase.database.Reference = firebase
+      .database()
+      .ref(`/users/` + userID);
+
+    console.log(userDetails);
+
+    return new Promise(function(resolve, reject) {
+      userDetails.on('value', personSnapshot => {
+        console.log('value updated in promis');
+        resolve(personSnapshot.val());
+      });
+    });
+  }
 }
