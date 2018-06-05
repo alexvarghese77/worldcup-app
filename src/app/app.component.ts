@@ -8,6 +8,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 //import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { ChallengesPage } from '../pages/challenges/challenges';
 
 import { LocalStorage } from '../services/localstorage.service';
 
@@ -16,26 +17,22 @@ import { LocalStorage } from '../services/localstorage.service';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any ;
+  rootPage: any;
   //rootPage:any = TabsPage;
   pages: Array<{ title: string; component: any }>;
-  
+
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private storage:LocalStorage
+    private storage: LocalStorage
   ) {
-  
-    this.storage.getAuth().then((result)=>{
-      console.log("authdetails",result);
-      result?this.rootPage=TabsPage:this.rootPage=LoginPage;
+    this.storage.getAuth().then(result => {
+      console.log('authdetails', result);
+      result ? (this.rootPage = TabsPage) : (this.rootPage = LoginPage);
       this.initializeApp();
     });
-    
-    
-    
-    
+
     //debugger;
     // // used for an example of ngFor and navigation
     this.pages = [

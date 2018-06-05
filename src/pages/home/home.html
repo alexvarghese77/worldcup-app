@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="homePageHeader">
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu">
@@ -8,7 +8,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="homePageContainer">
 
   <div class="matchtimercontainer">
     <div class="point">
@@ -22,24 +22,29 @@
     </div>
   </div>
 
-  <ion-card *ngFor="let item of todaysMatches" (click)="goToPrediction(item)">
-    <ion-card-header>
+  <ion-card class="card" *ngFor="let item of todaysMatches" (click)="goToPrediction(item)">
+    <!-- <ion-card-header>
       {{item.date}}
-    </ion-card-header>
+    </ion-card-header> -->
     <ion-card-content>
       <div>
-        <img src="assets/imgs/brazil.png" alt="">
+        <img class="teamFlag" src="{{'assets/imgs/flags/'+item.team1Code+'.jpg'}}" alt="">
         <div class="teamname"> {{item.team1Code}}</div>
       </div>
       <div style="margin-top: 40%">
-
         vs
       </div>
       <div>
-        <img src="assets/imgs/argentina.png" alt="">
-        <div class="teamname">{{item.team2Code}}</div>
+        <!-- <img src="{{'assets/imgs/flags/''+item.team2Code+'.jpg'}}" alt=" "> -->
+        <img class="teamFlag" src="{{'assets/imgs/flags/'+item.team2Code+'.jpg'}}" alt="">
+        <div class="teamname"> {{item.team2Code}}</div>
       </div>
     </ion-card-content>
+    <ion-row class="cardfooter ">
+      <ion-col>
+        <p> 05H : 30M :20S</p>
+      </ion-col>
+    </ion-row>
   </ion-card>
 
 </ion-content>
