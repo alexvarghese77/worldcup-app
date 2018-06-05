@@ -7,17 +7,17 @@
 
 <ion-header>
 
-  <ion-navbar>
+  <!-- <ion-navbar>
     <ion-title>login</ion-title>
-  </ion-navbar>
+  </ion-navbar> -->
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="loginPageContainer">
   <div class="container">
 
-
+    <img src="../../assets/imgs/zabiLoginPage.png" class="zabiLoginPage">
     <div class="inputcontainer">
 
       <!-- <form class="example-form">
@@ -35,18 +35,21 @@
         <button ion-button (click)="openPage()">Button</button>
       </form> -->
       <form [formGroup]="todo" (ngSubmit)="logForm()">
-        <ion-item>
-          <ion-label>Email</ion-label>
-          <ion-input type="text" formControlName="email"></ion-input>
+        <ion-item class="inputRow">
+          <!-- <ion-label>Email</ion-label> -->
+          <ion-input class="input" placeholder="Username" type="text" formControlName="email"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label>Password</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
+        <ion-item class="inputRow">
+          <!-- <ion-label>Password</ion-label> -->
+          <ion-input class="input" placeholder="Password" type="password" formControlName="password"></ion-input>
         </ion-item>
-        <button ion-button type="submit" [disabled]="!todo.valid">Login</button>
-
+        <ion-label class="frgtpwd">Forgot Password?</ion-label>
+        <button class="loginButton" ion-button type="submit" [disabled]="!todo.valid">Sign In</button>
       </form>
-      <button ion-button (click)="signup()">SignUp</button>
+      <ion-label class="frgtpwd">Don't have an account?
+        <b (click)="signup()">Sign Up</b>
+      </ion-label>
+      <!-- <button ion-button (click)="signup()">SignUp</button> -->
       <div>
 
       </div>

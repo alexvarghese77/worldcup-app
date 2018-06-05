@@ -6,39 +6,39 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <!-- <ion-navbar>
     <ion-title>Sign Up</ion-title>
-  </ion-navbar>
+  </ion-navbar> -->
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="signUpContainer">
   <div class="container">
 
-
+    <img src="../../assets/imgs/zabiLoginPage.png" class="zabiLoginPage">
     <div class="inputcontainer">
 
       <form [formGroup]="signup" (ngSubmit)="logForm()">
-        <ion-item>
-          <ion-label>Name</ion-label>
-          <ion-input type="text" formControlName="name"></ion-input>
+        <ion-item class="inputRow">
+          <!-- <ion-label>Name</ion-label> -->
+          <ion-input placeholder="Name" type="text" formControlName="name"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label>Email</ion-label>
-          <ion-input type="text" formControlName="email"></ion-input>
+        <ion-item class="inputRow">
+          <!-- <ion-label>Email</ion-label> -->
+          <ion-input placeholder="Email" type="text" formControlName="email"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label>Mobile</ion-label>
-          <ion-input type="text" formControlName="mobile"></ion-input>
+        <ion-item class="inputRow">
+          <!-- <ion-label>Mobile</ion-label> -->
+          <ion-input placeholder="Mobile" type="text" formControlName="mobile"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label>Password</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
+        <ion-item class="inputRow">
+          <!-- <ion-label>Password</ion-label> -->
+          <ion-input placeholder="Password" type="password" formControlName="password"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label>Confirm Password</ion-label>
-          <ion-input type="password" formControlName="cpassword"></ion-input>
+        <ion-item class="inputRow">
+          <!-- <ion-label>Confirm Password</ion-label> -->
+          <ion-input placeholder="Confirm Password" type="password" formControlName="cpassword"></ion-input>
         </ion-item>
         <button ion-button type="submit" [disabled]="!signup.valid">SignUp</button>
       </form>

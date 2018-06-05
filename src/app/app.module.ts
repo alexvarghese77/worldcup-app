@@ -17,6 +17,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { GoalPredictionPage } from '../pages/goal-prediction/goal-prediction';
+import { ChallengesPage } from '../pages/challenges/challenges';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -30,6 +31,7 @@ import { LocalStorage } from '../services/localstorage.service';
     AboutPage,
     ContactPage,
     HomePage,
+    ChallengesPage,
     TabsPage,
     LoginPage,
     SignupPage,
@@ -51,6 +53,7 @@ import { LocalStorage } from '../services/localstorage.service';
     AboutPage,
     ContactPage,
     HomePage,
+    ChallengesPage,
     TabsPage,
     LoginPage,
     SignupPage,
