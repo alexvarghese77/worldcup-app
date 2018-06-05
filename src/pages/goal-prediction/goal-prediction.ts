@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GameService } from '../../services/game.service';
 import { LocalStorage } from '../../services/localstorage.service';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the GoalPredictionPage page.
@@ -26,14 +27,21 @@ export class GoalPredictionPage {
     console.log(this.navParams.get('data'));
     this.matchdetails = this.navParams.get('data');
   }
-
+  goal1 = '';
+  goal2 = '';
   savePredictedGoal() {
+    var match = this.navParams.get('data');
     console.log('in predict goal');
     var predictionDetails = {
-      matchId: 6,
-      team1Goal: 2,
-      team2Code: 2
+      matchId: match.matchId,
+      team1Goal: parseInt(this.goal1),
+      team2Goal: parseInt(this.goal2)
     };
-    this.gameservice.writePredictedGoal(predictionDetails);
+    this.gameservice
+      .writePredictedGoal(predictionDetails)
+      .then(result => {
+        this.navCtrl.setRoot(HomePage);
+      })
+      .catch(err => {});
   }
 }

@@ -21,7 +21,7 @@ export class GameService {
   }
 
   writePredictedGoal(predictionDetails) {
-    this.getLocaldata().then(result => {
+    return this.getLocaldata().then(result => {
       let user = result.email.replace(/\./g, '_');
       const ref: firebase.database.Reference = firebase
         .database()

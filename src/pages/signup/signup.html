@@ -31,6 +31,7 @@
         <ion-item class="inputRow">
           <!-- <ion-label>Mobile</ion-label> -->
           <ion-input placeholder="Mobile" type="text" formControlName="mobile"></ion-input>
+
         </ion-item>
         <ion-item class="inputRow">
           <!-- <ion-label>Password</ion-label> -->
@@ -40,9 +41,9 @@
           <!-- <ion-label>Confirm Password</ion-label> -->
           <ion-input placeholder="Confirm Password" type="password" formControlName="cpassword"></ion-input>
         </ion-item>
-        <button ion-button type="submit" [disabled]="!signup.valid">SignUp</button>
+        <button ion-button class="signUpButton" type="submit" [disabled]="!signup.valid">SignUp</button>
       </form>
-      <button ion-button (click)="login()">Login</button>
+      <button class="backToLoginButton" ion-button (click)="login()">Login</button>
     </div>
   </div>
 
