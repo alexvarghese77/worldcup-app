@@ -20,4 +20,7 @@ export class HomePage {
     console.log('Match details', item);
     this.navCtrl.setRoot(GoalPredictionPage, { data: item });
   }
+  ionViewWillEnter(){
+    console.log("268762387675378265876582765628763576287");
+  }
 }

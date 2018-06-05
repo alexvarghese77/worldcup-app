@@ -3,9 +3,11 @@ import { IonicPage, NavController, MenuController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { SignupPage } from '../signup/signup';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 //import { FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { LocalStorage } from '../../services/localstorage.service';
+import { ValidateEmail } from '../../customValidations/customValidator';
 /**
  * Generated class for the LoginPage page.
  *
@@ -29,10 +31,14 @@ export class LoginPage {
     public menu: MenuController
   ) {
     this.todo = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['']
+      email: ['', Validators.compose([Validators.required, ValidateEmail])],
+      password: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(6)])
+      ]
     });
   }
+
   logForm() {
     console.log(this.todo.value);
     let credentials = this.todo.value;
