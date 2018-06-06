@@ -21,9 +21,8 @@ export class HomePage {
     console.log('Match details', item);
     this.navCtrl.setRoot(GoalPredictionPage, { data: item });
   }
-  ionViewWillEnter() {
-    this.authService.getCurrentUser().then(result => {
-      console.log(result);
-    });
-  }
+  // ionViewWillEnter() {}
+  //   this.authService.getCurrentUser().then(result => {
+  //     console.log(result);
+  //   });
 }
