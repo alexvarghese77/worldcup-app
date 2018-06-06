@@ -41,4 +41,15 @@ export class GameService {
   getLocaldata() {
     return this.storage.getAuth();
   }
+
+  getMatchPrizeWinners() {
+    const matchPrizeWinners: firebase.database.Reference = firebase
+      .database()
+      .ref(`/matchPrizeWinners/`);
+
+    matchPrizeWinners.on('value', personSnapshot => {
+      debugger;
+      console.log(personSnapshot.val());
+    });
+  }
 }
