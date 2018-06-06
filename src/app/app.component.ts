@@ -26,16 +26,8 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private storage: LocalStorage,
-    public app: App
+    private storage: LocalStorage
   ) {
-    platform.registerBackButtonAction(() => {
-      console.log('back button pressed');
-
-      // let nav = app.getActiveNavs()[0];
-      //let activeView = nav.getActive();
-    });
-
     this.storage.getAuth().then(result => {
       console.log('authdetails', result);
       result ? (this.rootPage = TabsPage) : (this.rootPage = LoginPage);

@@ -18,6 +18,7 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { GoalPredictionPage } from '../pages/goal-prediction/goal-prediction';
 import { ChallengesPage } from '../pages/challenges/challenges';
+import { ResultPage } from '../pages/result/result';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -35,7 +36,8 @@ import { LocalStorage } from '../services/localstorage.service';
     TabsPage,
     LoginPage,
     SignupPage,
-    GoalPredictionPage
+    GoalPredictionPage,
+    ResultPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import { LocalStorage } from '../services/localstorage.service';
     TabsPage,
     LoginPage,
     SignupPage,
-    GoalPredictionPage
+    GoalPredictionPage,
+    ResultPage
   ],
   providers: [
     StatusBar,
