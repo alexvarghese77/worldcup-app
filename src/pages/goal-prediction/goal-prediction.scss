@@ -2,6 +2,15 @@
   background: url(../assets/imgs/homebg.png);
   font-family: 'QUICKSAND-REGULAR';
 }
+.title {
+  float: left;
+  padding: 10px;
+  font-family: 'QUICKSAND-BOLD';
+}
+.backButton {
+  background-color: #1274af;
+  float: left;
+}
 .goalInput {
   width: 60%;
   text-align: center;
@@ -9,18 +18,23 @@
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 15px;
 }
+.cardp {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
 .saveButton {
   width: 100%;
   background-color: forestgreen;
   display: block;
   margin: 0 auto;
-  border-radius: 20px;
+  //border-radius: 20px;
   color: white;
+  height: 100%;
 }
 .cardfooterp {
   text-align: center;
   font-family: 'QUICKSAND-REGULAR';
-  height: 10%;
+  height: 25px;
 }
 .teamFlag {
   border-radius: 100%;

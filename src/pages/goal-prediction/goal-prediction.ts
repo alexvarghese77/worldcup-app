@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GameService } from '../../services/game.service';
 import { LocalStorage } from '../../services/localstorage.service';
 import { HomePage } from '../home/home';
-
+import { ToastController } from 'ionic-angular';
 /**
  * Generated class for the GoalPredictionPage page.
  *
@@ -22,7 +22,8 @@ export class GoalPredictionPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private gameservice: GameService,
-    private storage: LocalStorage
+    private storage: LocalStorage,
+    private toastCtrl: ToastController
   ) {
     console.log(this.navParams.get('data'));
     this.matchdetails = this.navParams.get('data');
@@ -32,6 +33,14 @@ export class GoalPredictionPage {
   savePredictedGoal() {
     var match = this.navParams.get('data');
     console.log('in predict goal');
+    if(this.goal1 === ""||this.goal2 === ""){
+      let toast = this.toastCtrl.create({
+      message: 'Enter the Goals',
+      duration: 3000,
+      position: 'top'
+    });
+   toast.present();
+    }
     var predictionDetails = {
       matchId: match.matchId,
       team1Goal: parseInt(this.goal1),
