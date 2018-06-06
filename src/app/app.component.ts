@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { App } from 'ionic-angular';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { AboutPage } from '../pages/about/about';
@@ -25,8 +26,16 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private storage: LocalStorage
+    private storage: LocalStorage,
+    public app: App
   ) {
+    platform.registerBackButtonAction(() => {
+      console.log('back button pressed');
+
+      // let nav = app.getActiveNavs()[0];
+      //let activeView = nav.getActive();
+    });
+
     this.storage.getAuth().then(result => {
       console.log('authdetails', result);
       result ? (this.rootPage = TabsPage) : (this.rootPage = LoginPage);

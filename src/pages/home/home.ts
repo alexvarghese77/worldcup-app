@@ -22,8 +22,13 @@ export class HomePage {
     this.navCtrl.setRoot(GoalPredictionPage, { data: item });
   }
   ionViewWillEnter() {
-    this.authService.getCurrentUser().then(result => {
-      console.log(result);
-    });
+    this.incrementCount();
+    console.log(this.count);
+    // this.authService.getCurrentUser().then(result => {
+    //   console.log(result);
+    // });
+  }
+  incrementCount() {
+    this.count++;
   }
 }
