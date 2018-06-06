@@ -44,4 +44,8 @@ export class GoalPredictionPage {
       })
       .catch(err => {});
   }
+  backButtonClick() {
+    console.log('back button pressed');
+    this.navCtrl.setRoot(HomePage);
+  }
 }

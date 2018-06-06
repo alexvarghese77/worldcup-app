@@ -9,6 +9,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { IonicStorageModule } from '@ionic/storage';
+import { Network } from '@ionic-native/network';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -37,7 +38,8 @@ import { LocalStorage } from '../services/localstorage.service';
     LoginPage,
     SignupPage,
     GoalPredictionPage,
-    ResultPage
+    ResultPage,
+    Network
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,7 @@ import { LocalStorage } from '../services/localstorage.service';
     AuthService,
     GameService,
     LocalStorage,
+    Network,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

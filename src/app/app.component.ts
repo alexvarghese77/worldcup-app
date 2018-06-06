@@ -1,20 +1,25 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, NgModule } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { App } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+// import { Network } from '@ionic-native/network';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 //import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { ChallengesPage } from '../pages/challenges/challenges';
 
 import { LocalStorage } from '../services/localstorage.service';
 
+// @NgModule({
+//   providers: [Network]
+// })
 @Component({
   templateUrl: 'app.html'
+  // providers: [Network]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -26,8 +31,43 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private storage: LocalStorage
+    private storage: LocalStorage,
+    public app: App,
+    private alertCtrl: AlertController // private network: Network
   ) {
+    platform.registerBackButtonAction(() => {
+      let nav = app.getActiveNavs()[0];
+      let activeView = nav.getActive();
+
+      if (activeView.name === 'LoginPage' || activeView.name === 'HomePage') {
+        if (nav.canGoBack()) {
+          //Can we go back?
+          nav.pop();
+        } else {
+          const alert = this.alertCtrl.create({
+            title: 'App termination',
+            message: 'Do you want to close the app?',
+            buttons: [
+              {
+                text: 'Cancel',
+                role: 'cancel',
+                handler: () => {
+                  console.log('Application exit prevented!');
+                }
+              },
+              {
+                text: 'Close App',
+                handler: () => {
+                  this.platform.exitApp(); // Close this application
+                }
+              }
+            ]
+          });
+          alert.present();
+        }
+      }
+    });
+
     this.storage.getAuth().then(result => {
       console.log('authdetails', result);
       result ? (this.rootPage = TabsPage) : (this.rootPage = LoginPage);
@@ -62,4 +102,21 @@ export class MyApp {
       this.splashScreen.hide();
     });
   }
+  /*checkInterConnection() {
+    if (this.network.type === 'none') {
+      const alert = this.alertCtrl.create({
+        title: 'App termination due to no internet',
+        message: 'No network connection!! Please Conect to a network!!',
+        buttons: [
+          {
+            text: 'OK',
+            handler: () => {
+              this.platform.exitApp(); // Close this application
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+  }*/
 }

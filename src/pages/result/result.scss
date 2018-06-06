@@ -18,7 +18,7 @@
   /* margin-top: 15px; */
 }
 .homePageContainer {
-  background: url(../../assets/imgs/homebg.png);
+  background: url(../assets/imgs/homebg.png);
   font-family: 'QUICKSAND-REGULAR';
 }
 .point {
@@ -54,7 +54,9 @@ ion-card-header {
   color: white !important;
 }
 ion-card-content {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  text-align: center;
 }
 ion-card-footer {
   text-align: center;
