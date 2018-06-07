@@ -20,11 +20,18 @@ export function ValidateName(control: AbstractControl) {
   return { validUrl: true };
 }
 export function ValidateMobile(control: AbstractControl) {
-  console.log('validator called');
-
   var re = /^[\d*]{10,15}$/;
   if (re.test(control.value.toLowerCase())) {
     return null;
   }
   return { validUrl: true };
+}
+
+export function passwordValidator(control: AbstractControl) {
+  // if (control.value != null && control.get('password').value != null) {
+  //   if (control.value === control.get('password').value) {
+  //     return null;
+  //   }
+  // }
+  // return { validUrl: true };
 }

@@ -10,6 +10,7 @@ import { LocalStorage } from '../../services/localstorage.service';
 import { ValidateName } from '../../customValidations/customValidator';
 import { ValidateEmail } from '../../customValidations/customValidator';
 import { ValidateMobile } from '../../customValidations/customValidator';
+import { passwordValidator } from '../../customValidations/customValidator';
 /**
  * Generated class for the SignupPage page.
  *
@@ -33,9 +34,27 @@ export class SignupPage {
     this.signup = this.formBuilder.group({
       name: ['', Validators.compose([Validators.required, ValidateName])],
       email: ['', Validators.compose([Validators.required, ValidateEmail])],
-      mobile: ['', Validators.required],
-      password: ['', Validators.required],
-      cpassword: ['', Validators.required]
+      mobile: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(15),
+          ValidateMobile
+        ])
+      ],
+      password: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(6)])
+      ],
+      cpassword: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(6),
+          passwordValidator.bind(this)
+        ])
+      ]
     });
   }
   logForm() {
