@@ -33,18 +33,19 @@ export class GoalPredictionPage {
   savePredictedGoal() {
     var match = this.navParams.get('data');
     console.log('in predict goal');
-    if(this.goal1 === ""||this.goal2 === ""){
+    if (this.goal1 === '' || this.goal2 === '') {
       let toast = this.toastCtrl.create({
-      message: 'Enter the Goals', 
-      duration: 3000,
-      position: 'top'
-    });
-   toast.present();
+        message: 'Enter the Goals',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
     }
     var predictionDetails = {
       matchId: match.matchId,
       team1Goal: parseInt(this.goal1),
-      team2Goal: parseInt(this.goal2)
+      team2Goal: parseInt(this.goal2),
+      date: match.date
     };
     this.gameservice
       .writePredictedGoal(predictionDetails)
