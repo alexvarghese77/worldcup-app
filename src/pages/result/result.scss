@@ -9,6 +9,9 @@
   height: 30px !important;
   display: inline !important;
 }
+.resultPageContainer .teamname {
+  font-size: 15px !important;
+}
 .homePageHeader {
   background: darkseagreen;
   color: white;
@@ -20,7 +23,7 @@
   padding: 10px;
   /* margin-top: 15px; */
 }
-.homePageContainer {
+.resultPageContainer {
   background: url(../assets/imgs/homebg.png);
   font-family: 'QUICKSAND-REGULAR';
 }
@@ -37,16 +40,20 @@
   /* margin: 5px; */
   overflow: auto;
 }
-
+.cardResults {
+  background: url(../assets/imgs/fifa.jpg);
+  background-size: 100% 100%;
+}
 ion-card {
   margin: 5px;
   border-radius: 20%;
 }
 .cardResults {
   //   background: rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.2);
+  //background: rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   font-family: 'QUICKSAND-BOLD';
+  color: white;
 }
 ion-card-header {
   font-size: 15px;
@@ -67,9 +74,17 @@ ion-card-footer {
 }
 .cardFooterResults {
   text-align: center;
-  background: #1274af;
+
+  font-family: 'QUICKSAND-REGULAR';
+  height: 70px;
+}
+.cardFooterResults div {
+  color: white;
   font-family: 'QUICKSAND-REGULAR';
 }
-.cardFooterResults p {
-  color: white;
+.cardFooterResults .winners {
+  color: gold;
+  font-family: 'QUICKSAND-BOLD';
+  text-align: center;
+  font-size: 12px;
 }

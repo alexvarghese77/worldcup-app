@@ -32,8 +32,8 @@ export class SignupPage {
   ) {
     this.signup = this.formBuilder.group({
       name: ['', Validators.compose([Validators.required, ValidateName])],
-      email: ['',Validators.compose([Validators.required, ValidateEmail])],
-      mobile: ['',  Validators.compose([Validators.required, ValidateMobile])],
+      email: ['', Validators.compose([Validators.required, ValidateEmail])],
+      mobile: ['', Validators.required],
       password: ['', Validators.required],
       cpassword: ['', Validators.required]
     });

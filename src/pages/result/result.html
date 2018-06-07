@@ -13,11 +13,9 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="resultPageContainer">
   <ion-card class="cardResults" *ngFor="let item of todaysResults">
-    <ion-card-header>
-      {{item.date}}
-    </ion-card-header>
+
     <ion-card-content>
       <div>
         <img class="teamFlagResults" src="{{'assets/imgs/flags/'+item.team1Code+'.jpg'}}" alt="">
@@ -27,14 +25,17 @@
         vs
       </div>
       <div>
-        <!-- <img src="{{'assets/imgs/flags/''+item.team2Code+'.jpg'}}" alt=" "> -->
         <img class="teamFlagResults" src="{{'assets/imgs/flags/'+item.team2Code+'.jpg'}}" alt="">
         <div class="teamname"> {{item.team2Code}}</div>
       </div>
+
     </ion-card-content>
     <ion-row class="cardFooterResults">
+
       <ion-col>
-        <p> 05H : 30M :20S</p>
+        <div class="winners">WINNERS</div>
+        <div>{{item.user1}}</div>
+        <div>{{item.user2}}</div>
       </ion-col>
     </ion-row>
   </ion-card>
