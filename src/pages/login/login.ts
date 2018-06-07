@@ -3,6 +3,7 @@ import { IonicPage, NavController, MenuController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { SignupPage } from '../signup/signup';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AlertController } from 'ionic-angular';
 
 //import { FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
@@ -28,7 +29,8 @@ export class LoginPage {
     private auth: AuthService,
     private storage: LocalStorage,
     public navCtrl: NavController,
-    public menu: MenuController
+    public menu: MenuController,
+     private alertCtrl: AlertController
   ) {
     this.todo = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, ValidateEmail])],
@@ -49,7 +51,23 @@ export class LoginPage {
       }
 
       // error => this.loginError = error.message
-    );
+    ).catch((error)=>{
+      
+        const alert = this.alertCtrl.create({
+        title: 'Invalid Login!',
+        message: 'Please check the credentials or Sign Up',
+        buttons: [
+          {
+            text: 'OK',
+            role: 'cancel',
+            handler: () => {
+              
+            }
+          }
+        ]
+      });
+      alert.present();
+    });
   }
   signup() {
     this.navCtrl.setRoot(SignupPage);

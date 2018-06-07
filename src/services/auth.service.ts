@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 //import { AngularFireDatabase } from 'angularfire2/database';
 //import AuthProvider = firebase.auth.AuthProvider;
+import { DatePipe } from '@angular/common';
 
+@Component({
+  providers: [DatePipe]
+})
 @Injectable()
 export class AuthService {
   private user: firebase.User;
@@ -11,7 +15,7 @@ export class AuthService {
   //private noteListRef = this.db.database.ref().child('TeamList');
   fixture = [];
 
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(public afAuth: AngularFireAuth, public datepipe: DatePipe) {
     afAuth.authState.subscribe(user => {
       this.user = user;
       console.log('state of user', this.user);
@@ -49,10 +53,11 @@ export class AuthService {
     //   return match.date == '28-06-2018';
     // });
     //return matches;
-
+    var date = new Date();
+    var ddmmyyyy = this.datepipe.transform(date, 'dd-MM-yyyy');
     const fixture: firebase.database.Reference = firebase
       .database()
-      .ref(`/fixtures/`);
+      .ref(`/Matches/${ddmmyyyy}`);
     //  fixture.on('value', personSnapshot => {
     //  console.log("value updated");
     //   return personSnapshot.val();

@@ -6,6 +6,7 @@ import { GoalPredictionPage } from '../goal-prediction/goal-prediction';
 import { Network } from '@ionic-native/network';
 import { MyApp } from '../../app/app.component';
 import { AlertController } from 'ionic-angular';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   providers: [Network]
@@ -13,18 +14,20 @@ import { AlertController } from 'ionic-angular';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [Network]
+  providers: [Network, DatePipe]
 })
 export class HomePage {
   todaysMatches;
   count = 0;
+  today = '';
   constructor(
     public navCtrl: NavController,
     private authService: AuthService,
     public network: Network,
     //public myApp: MyApp,
     public platform: Platform,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public datepipe: DatePipe
   ) {
     authService.getTodaysMatchs().then(result => {
       this.todaysMatches = result;
@@ -37,6 +40,8 @@ export class HomePage {
     this.navCtrl.setRoot(GoalPredictionPage, { data: item });
   }
   ionViewWillEnter() {
+    let date = new Date();
+    this.today = this.datepipe.transform(date, 'dd MMM yyyy');
     this.incrementCount();
     console.log(this.count);
     this.checkInterConnection();

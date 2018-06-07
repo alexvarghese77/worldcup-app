@@ -35,7 +35,7 @@ export class GoalPredictionPage {
     console.log('in predict goal');
     if(this.goal1 === ""||this.goal2 === ""){
       let toast = this.toastCtrl.create({
-      message: 'Enter the Goals',
+      message: 'Enter the Goals', 
       duration: 3000,
       position: 'top'
     });

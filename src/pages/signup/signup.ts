@@ -7,6 +7,9 @@ import { AuthService } from '../../services/auth.service';
 import { LoginPage } from '../login/login';
 import firebase from 'firebase';
 import { LocalStorage } from '../../services/localstorage.service';
+import { ValidateName } from '../../customValidations/customValidator';
+import { ValidateEmail } from '../../customValidations/customValidator';
+import { ValidateMobile } from '../../customValidations/customValidator';
 /**
  * Generated class for the SignupPage page.
  *
@@ -28,11 +31,11 @@ export class SignupPage {
     private storage: LocalStorage
   ) {
     this.signup = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-      mobile: [''],
+      name: ['', Validators.compose([Validators.required, ValidateName])],
+      email: ['',Validators.compose([Validators.required, ValidateEmail])],
+      mobile: ['',  Validators.compose([Validators.required, ValidateMobile])],
       password: ['', Validators.required],
-      cpassword: ['']
+      cpassword: ['', Validators.required]
     });
   }
   logForm() {

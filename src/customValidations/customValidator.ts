@@ -9,3 +9,22 @@ export function ValidateEmail(control: AbstractControl) {
   }
   return { validUrl: true };
 }
+
+export function ValidateName(control: AbstractControl) {
+  console.log('validator called');
+
+  var re = /^[a-zA-Z ]{4,30}$/;
+  if (re.test(control.value.toLowerCase())) {
+    return null;
+  }
+  return { validUrl: true };
+}
+export function ValidateMobile(control: AbstractControl) {
+  console.log('validator called');
+
+  var re = /^[\d*]{10,15}$/;
+  if (re.test(control.value.toLowerCase())) {
+    return null;
+  }
+  return { validUrl: true };
+}

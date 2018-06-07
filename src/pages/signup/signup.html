@@ -27,10 +27,11 @@
         <ion-item class="inputRow">
           <!-- <ion-label>Email</ion-label> -->
           <ion-input placeholder="Email" type="text" formControlName="email"></ion-input>
+          <p *ngIf="emailIsCorrect">error message: incorrect email</p>
         </ion-item>
         <ion-item class="inputRow">
           <!-- <ion-label>Mobile</ion-label> -->
-          <ion-input placeholder="Mobile" type="text" formControlName="mobile"></ion-input>
+          <ion-input placeholder="Mobile" type="number" pattern="\d*" formControlName="mobile"></ion-input>
 
         </ion-item>
         <ion-item class="inputRow">
