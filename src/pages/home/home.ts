@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, ViewChild, Renderer } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Nav, Platform } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
@@ -8,19 +8,21 @@ import { MyApp } from '../../app/app.component';
 import { AlertController } from 'ionic-angular';
 import { DatePipe } from '@angular/common';
 import { LoadingController } from 'ionic-angular/index';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @NgModule({
-  providers: [Network]
+  providers: [Network, LocalNotifications]
 })
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [Network, DatePipe]
+  providers: [Network, DatePipe, LocalNotifications]
 })
 export class HomePage {
-  todaysMatches;
+  todaysMatches = [];
   count = 0;
   today = '';
+  todayDate = '';
   constructor(
     public navCtrl: NavController,
     private authService: AuthService,
@@ -29,18 +31,41 @@ export class HomePage {
     public platform: Platform,
     private alertCtrl: AlertController,
     public datepipe: DatePipe,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private localNotifications: LocalNotifications
   ) {
     let loadingPopup = this.loadingCtrl.create({
       content: 'Loading data...'
     });
+    let day = new Date();
 
+    this.todayDate = this.datepipe.transform(day, 'dd MMM yyyy');
+    // console.log(this.todayDate);
+
+    day.setHours(8);
+    day.setMinutes(30);
+    day.setSeconds(0);
+
+    this.localNotifications.schedule({
+      id: 3,
+      title: 'Warning',
+      text: 'Dont fall asleep',
+      trigger: { at: day },
+      every: 'day'
+    });
     // Show the popup
     loadingPopup.present();
+
     authService.getTodaysMatchs().then(result => {
-      this.todaysMatches = result;
+      for (var key in result) {
+        if (result.hasOwnProperty(key)) {
+          var val = result[key];
+          this.todaysMatches.push(val);
+        }
+      }
       loadingPopup.dismiss();
     });
+
     console.log(this.todaysMatches);
   }
 

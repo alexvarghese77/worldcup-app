@@ -49,20 +49,12 @@ export class AuthService {
       .update({ mobile: credentials.mobile });
   }
   getTodaysMatchs() {
-    // let matches = this.fixture.filter(match => {
-    //   return match.date == '28-06-2018';
-    // });
-    //return matches;
     var date = new Date();
     var ddmmyyyy = this.datepipe.transform(date, 'dd-MM-yyyy');
     const fixture: firebase.database.Reference = firebase
       .database()
       .ref(`/Matches/${ddmmyyyy}`);
-    //  fixture.on('value', personSnapshot => {
-    //  console.log("value updated");
-    //   return personSnapshot.val();
 
-    // });
     console.log('method called');
 
     return new Promise(function(resolve, reject) {
@@ -71,11 +63,24 @@ export class AuthService {
         resolve(personSnapshot.val());
       });
     });
+  }
 
-    //console.log("shdkjhnskj",matchdetis)
-    // matchdetis.then((result)=>{
-    //   console.log(result);
-    // }).catch(()=>"erreo")
+  getYesterdaysResults() {
+    var date = new Date();
+    var yesterday = new Date(date);
+    yesterday.setDate(date.getDate());
+    var ddmmyyyy = this.datepipe.transform(yesterday, 'dd-MM-yyyy');
+    const fixture: firebase.database.Reference = firebase
+      .database()
+      .ref(`/Matches/${ddmmyyyy}`);
+    console.log('method called');
+
+    return new Promise(function(resolve, reject) {
+      fixture.on('value', personSnapshot => {
+        console.log('value updated in promis');
+        resolve(personSnapshot.val());
+      });
+    });
   }
   getCurrentUser() {
     // var userID = this.user.email.replace(/\./g, '_');
