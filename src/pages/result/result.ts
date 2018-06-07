@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GameService } from '../../services/game.service';
+import { AuthService } from '../../services/auth.service';
 /**
  * Generated class for the ResultPage page.
  *
@@ -14,12 +15,23 @@ import { GameService } from '../../services/game.service';
   templateUrl: 'result.html'
 })
 export class ResultPage {
+  todaysResults = [];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private gameservice: GameService
+    private gameservice: GameService,
+    private authService: AuthService
   ) {
-    gameservice.getMatchPrizeWinners();
+    //gameservice.getMatchPrizeWinners();
+
+    authService.getYesterdaysResults().then(result => {
+      for (var key in result) {
+        if (result.hasOwnProperty(key)) {
+          var val = result[key];
+          this.todaysResults.push(val);
+        }
+      }
+    });
   }
 
   ionViewDidLoad() {

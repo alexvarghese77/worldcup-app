@@ -19,7 +19,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
   providers: [Network, DatePipe, LocalNotifications]
 })
 export class HomePage {
-  todaysMatches;
+  todaysMatches = [];
   count = 0;
   today = '';
   todayDate = '';
@@ -38,7 +38,10 @@ export class HomePage {
       content: 'Loading data...'
     });
     let day = new Date();
-    this.todayDate = this.datepipe.transform(day, 'dd-MM-yyyy');
+
+    this.todayDate = this.datepipe.transform(day, 'dd MMM yyyy');
+    // console.log(this.todayDate);
+
     day.setHours(8);
     day.setMinutes(30);
     day.setSeconds(0);
@@ -52,10 +55,17 @@ export class HomePage {
     });
     // Show the popup
     loadingPopup.present();
+
     authService.getTodaysMatchs().then(result => {
-      this.todaysMatches = result;
+      for (var key in result) {
+        if (result.hasOwnProperty(key)) {
+          var val = result[key];
+          this.todaysMatches.push(val);
+        }
+      }
       loadingPopup.dismiss();
     });
+
     console.log(this.todaysMatches);
   }
 
