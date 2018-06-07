@@ -14,19 +14,29 @@
 
 
 <ion-content padding>
-  <ion-card class="card" (click)="goToPrediction(item)">
-    <ion-card-header>
-      14th Apr
-    </ion-card-header>
+  <ion-card class="cardResults" (click)="goToPrediction(item)">
+    <!-- <ion-card-header>
+      {{item.date}}
+    </ion-card-header> -->
     <ion-card-content>
-
-      <div class="teamname"> RUS V/S KSA</div>
       <div>
-        <li>Alex Varghse</li>
-        <li>Ajith</li>
+        <img class="teamFlagResults" src='assets/imgs/flags/AUS.jpg' alt="">
+        <div class="teamname"> AUS</div>
       </div>
-
+      <div style="margin-top: 10%">
+        vs
+      </div>
+      <div>
+        <!-- <img src="{{'assets/imgs/flags/''+item.team2Code+'.jpg'}}" alt=" "> -->
+        <img class="teamFlagResults" src="assets/imgs/flags/AUS.jpg" alt="">
+        <div class="teamname"> AUS</div>
+      </div>
     </ion-card-content>
-
+    <ion-row class="cardFooterResults">
+      <ion-col>
+        <p> 05H : 30M :20S</p>
+      </ion-col>
+    </ion-row>
   </ion-card>
+
 </ion-content>
