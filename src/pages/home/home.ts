@@ -7,6 +7,7 @@ import { Network } from '@ionic-native/network';
 import { MyApp } from '../../app/app.component';
 import { AlertController } from 'ionic-angular';
 import { DatePipe } from '@angular/common';
+import { LoadingController } from 'ionic-angular/index';
 
 @NgModule({
   providers: [Network]
@@ -27,10 +28,18 @@ export class HomePage {
     //public myApp: MyApp,
     public platform: Platform,
     private alertCtrl: AlertController,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    private loadingCtrl: LoadingController
   ) {
+    let loadingPopup = this.loadingCtrl.create({
+      content: 'Loading data...'
+    });
+
+    // Show the popup
+    loadingPopup.present();
     authService.getTodaysMatchs().then(result => {
       this.todaysMatches = result;
+      loadingPopup.dismiss();
     });
     console.log(this.todaysMatches);
   }
