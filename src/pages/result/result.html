@@ -15,16 +15,17 @@
 
 <ion-content padding class="resultPageContainer">
   <ion-card class="cardResults" *ngFor="let item of todaysResults">
-
-    <ion-card-content>
-      <div>
+    <ion-card-content class="cardResultContecnt">
+      <div class="team1flag">
         <img class="teamFlagResults" src="{{'assets/imgs/flags/'+item.team1Code+'.jpg'}}" alt="">
         <div class="teamname"> {{item.team1Code}}</div>
       </div>
-      <div style="margin-top: 10%">
-        vs
+      <div class="goals">
+        <span>1</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>0</span>
       </div>
-      <div>
+      <div class="team2flag">
         <img class="teamFlagResults" src="{{'assets/imgs/flags/'+item.team2Code+'.jpg'}}" alt="">
         <div class="teamname"> {{item.team2Code}}</div>
       </div>
@@ -34,8 +35,8 @@
 
       <ion-col>
         <div class="winners">WINNERS</div>
-        <div>{{item.user1}}</div>
-        <div>{{item.user2}}</div>
+        <div>1.&nbsp;{{item.user1}}</div>
+        <div>2.&nbsp;{{item.user2}}</div>
       </ion-col>
     </ion-row>
   </ion-card>
