@@ -48,8 +48,21 @@ export class GameService {
       .ref(`/matchPrizeWinners/`);
 
     matchPrizeWinners.on('value', personSnapshot => {
-      debugger;
       console.log(personSnapshot.val());
+    });
+  }
+
+  getUserDetails() {
+    this.getLocaldata().then(result => {
+      let user = result.email.replace(/\./g, '_');
+      const getUserData: firebase.database.Reference = firebase
+        .database()
+        .ref(`/user/${user}`);
+
+      getUserData.on('value', personSnapshot => {
+        console.log(personSnapshot.val());
+        this.storage.setAuth(personSnapshot.val());
+      });
     });
   }
 }

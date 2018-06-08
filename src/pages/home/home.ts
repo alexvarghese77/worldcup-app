@@ -11,6 +11,8 @@ import { LoadingController } from 'ionic-angular/index';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
+import { storage } from 'firebase';
+import { LocalStorage } from '../../services/localstorage.service';
 
 @NgModule({
   providers: [Network, LocalNotifications]
@@ -34,7 +36,8 @@ export class HomePage {
     private alertCtrl: AlertController,
     public datepipe: DatePipe,
     private loadingCtrl: LoadingController,
-    private localNotifications: LocalNotifications
+    private localNotifications: LocalNotifications,
+    private localStorage: LocalStorage
   ) {
     Observable.interval(1000).subscribe();
     let loadingPopup = this.loadingCtrl.create({
@@ -135,5 +138,14 @@ export class HomePage {
     }
 
     return t;
+  }
+
+  getMatch(matchId) {
+    console.log('matchId', matchId);
+
+    let userDetails;
+    //   this.localStorage.getAuth().then(result => {
+    //     userDetails = result;
+    //   }).catch(()=>console.log("Error"))
   }
 }

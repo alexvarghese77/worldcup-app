@@ -50,6 +50,7 @@ export class GoalPredictionPage {
     this.gameservice
       .writePredictedGoal(predictionDetails)
       .then(result => {
+        this.gameservice.getUserDetails();
         this.navCtrl.setRoot(HomePage);
       })
       .catch(err => {});
