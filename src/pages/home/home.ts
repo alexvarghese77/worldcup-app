@@ -27,6 +27,8 @@ export class HomePage {
   count = 0;
   today = '';
   todayDate = '';
+  userDetails;
+
   constructor(
     public navCtrl: NavController,
     private authService: AuthService,
@@ -141,11 +143,25 @@ export class HomePage {
   }
 
   getMatch(matchId) {
-    console.log('matchId', matchId);
+    if (this.userDetails != null) {
+      // debugger;
+      //console.log("userDetails------------",this.userDetails.predictedmatches[matchId].team1Goal);
+      return this.userDetails.predictedmatches[matchId]
+        ? this.userDetails.predictedmatches[matchId].team1Goal +
+            '-' +
+            this.userDetails.predictedmatches[matchId].team2Goal
+        : 'vs';
+    } else {
+      return 'vs';
+    }
+  }
 
-    let userDetails;
-    //   this.localStorage.getAuth().then(result => {
-    //     userDetails = result;
-    //   }).catch(()=>console.log("Error"))
+  ionViewDidEnter() {
+    this.localStorage
+      .getAuth()
+      .then(result => {
+        this.userDetails = result;
+      })
+      .catch(() => console.log('Error'));
   }
 }
