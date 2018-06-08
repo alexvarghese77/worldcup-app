@@ -9,12 +9,12 @@
 </ion-header>
 
 
-<ion-content no-bounce padding class="signUpContainer" ion-fixed>
+<ion-content scroll="false" padding class="signUpContainer" ion-fixed>
   <!-- <div class="container"> -->
 
   <img src="assets/imgs/zabiLoginPage.png" no-bounce class="zabiSignUpPage">
-  <div class="inputcontainerSignUp">
-    <form [formGroup]="signup" (ngSubmit)="logForm()">
+  <div scroll="false" class="inputcontainerSignUp">
+    <form [formGroup]="signup" (ngSubmit)="logForm()" scroll="false">
       <ion-item class="inputRow">
         <ion-input placeholder="Name" type="text" formControlName="name"></ion-input>
       </ion-item>
