@@ -84,17 +84,15 @@ export class AuthService {
       });
     });
   }
-  getCurrentUser() {
-    // var userID = this.user.email.replace(/\./g, '_');
-    // const userDetails: firebase.database.Reference = firebase
-    //   .database()
-    //   .ref(`/users/` + userID);
-    // console.log(userDetails);
-    // return new Promise(function(resolve, reject) {
-    //   userDetails.on('value', personSnapshot => {
-    //     console.log('value updated in promis');
-    //     resolve(personSnapshot.val());
-    //   });
-    // });
+  getCurrentVersion() {
+    const version: firebase.database.Reference = firebase
+      .database()
+      .ref(`/version/`);
+    return new Promise(function(resolve, reject) {
+      version.on('value', personSnapshot => {
+        console.log('value updated in promis');
+        resolve(personSnapshot.val());
+      });
+    });
   }
 }

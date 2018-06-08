@@ -28,7 +28,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any;
   //rootPage:any = TabsPage;
-  pages: Array<{ title: string; component: any }>;
+  pages: Array<{ title: string; icon: string; component: any }>;
   name = 'ZABIVAKA';
   point = 0;
   constructor(
@@ -86,10 +86,14 @@ export class MyApp {
     //debugger;
     // // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Leaderboard', component: LeaderboardPage },
-      { title: 'Leaderboard', component: LeaderboardPage },
-      { title: 'Howto Play', component: HowToPlayPage },
-      { title: 'Feedback', component: FeedbackPage }
+      { title: 'Leaderboard', icon: 'md-trophy', component: LeaderboardPage },
+      { title: 'Leaderboard', icon: 'md-trophy', component: LeaderboardPage },
+      {
+        title: 'Howto Play',
+        icon: 'md-game-controller-b',
+        component: HowToPlayPage
+      },
+      { title: 'Feedback', icon: 'md-paper', component: FeedbackPage }
     ];
   }
   openPage(page) {
@@ -131,5 +135,4 @@ export class MyApp {
     this.name = name;
     //this.point=point;
   }
- 
 }

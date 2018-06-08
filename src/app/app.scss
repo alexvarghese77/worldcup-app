@@ -21,3 +21,20 @@
   font-family: 'QUICKSAND-BLD';
   src: url('../assets/fonts/QUICKSAND-BOLD.TTF');
 }
+.sidemenu {
+  background: linear-gradient(#000428, #004e92);
+  color: white;
+  margin-top: 10px;
+  border: none;
+}
+.sidemenu .list {
+  background: linear-gradient(#000428, #004e92);
+  color: white;
+  border: none;
+}
+.sidemenu .list button {
+  background: linear-gradient(#000428, #004e92);
+  color: white;
+  border: none;
+  font-family: 'QUICKSAND-REGULAR';
+}

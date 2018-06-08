@@ -6,6 +6,8 @@ import { LoadingController } from 'ionic-angular/index';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { ToastController } from 'ionic-angular';
+import { LocalStorage } from '../../services/localstorage.service';
+import { AlertController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -15,13 +17,16 @@ import { ToastController } from 'ionic-angular';
 export class ChallengesPage {
   todayDate: '';
   todaysChallenges = [];
+  userDetails;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public datepipe: DatePipe,
     public challengeService: ChallengeService,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private localStorage: LocalStorage,
+    private alertController: AlertController
   ) {
     Observable.interval(1000).subscribe();
     let loadingPopup = this.loadingCtrl.create({
@@ -29,7 +34,7 @@ export class ChallengesPage {
     });
     loadingPopup.present();
 
-    this.challengeService.getChallanges().then(result => {
+    this.challengeService.getMegaChallanges().then(result => {
       for (var key in result) {
         if (result.hasOwnProperty(key)) {
           var val = result[key];
@@ -37,26 +42,102 @@ export class ChallengesPage {
         }
       }
       loadingPopup.dismiss();
+      this.setUserDetails();
     });
     let day = new Date();
 
     // this.todayDate = this.datepipe.transform(day, 'dd MMM yyyy');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ChallengesPage');
+  ionViewDidEnter() {
+    this.setUserDetails();
   }
-  saveChallangeInput(cId) {
-    var ele = <HTMLInputElement>document.getElementById(cId);
-    var ans = ele.value;
-    this.challengeService.updatePrediction(cId, ans).then(result => {
-      let toast = this.toastCtrl.create({
-        message: 'Successfully Saved',
-        duration: 3000,
-        position: 'top'
+  setUserDetails() {
+    this.localStorage
+      .getAuth()
+      .then(result => {
+        this.userDetails = result;
+        this.updateTodaysChallanges();
+      })
+      .catch(() => console.log('Error'));
+  }
+  updateTodaysChallanges() {
+    var ans = '';
+    if (this.userDetails != null && this.todaysChallenges.length > 0) {
+      if (this.userDetails.predictedMegaChallenges) {
+        for (var i = 0; i < this.todaysChallenges.length; i++) {
+          var cId = this.todaysChallenges[i].cId;
+          if (this.userDetails.predictedMegaChallenges[cId]) {
+            ans = this.userDetails.predictedMegaChallenges[cId].ans;
+            this.todaysChallenges[i].ans = ans;
+          } else {
+            ans = '';
+            this.todaysChallenges[i].ans = ans;
+          }
+        }
+      } else {
+        for (var i = 0; i < this.todaysChallenges.length; i++) {
+          var cId = this.todaysChallenges[i].cId;
+          ans = '';
+          this.todaysChallenges[i].ans = ans;
+        }
+      }
+    } else {
+      for (var i = 0; i < this.todaysChallenges.length; i++) {
+        var cId = this.todaysChallenges[i].cId;
+        ans = '';
+        this.todaysChallenges[i].ans = ans;
+      }
+    }
+  }
+  saveChallangeInput(cId, date, time) {
+    var item = { date: date, time: time };
+    if (this.timerfn(item) != 'Time Up') {
+      var ele = <HTMLInputElement>document.getElementById(cId);
+      var ans = ele.value;
+      if (ans == '' || ans == null) {
+        let toastM = this.toastCtrl.create({
+          message: 'Please Enter your prediction',
+          duration: 3000,
+          position: 'top'
+        });
+        toastM.present();
+      } else {
+        var re = /^[a-zA-Z ]{4,30}$/;
+        if (!re.test(ans.toLowerCase())) {
+          let toast2 = this.toastCtrl.create({
+            message: 'Please Enter valid prediction',
+            duration: 3000,
+            position: 'top'
+          });
+          toast2.present();
+        } else {
+          this.challengeService.updatePrediction(cId, ans).then(result => {
+            let toast = this.toastCtrl.create({
+              message: 'Successfully Saved',
+              duration: 3000,
+              position: 'top'
+            });
+            toast.present();
+          });
+        }
+      }
+    } else {
+      const alert = this.alertController.create({
+        title: 'Time Up!!',
+        message: 'Prediction time over!!',
+        buttons: [
+          {
+            text: 'OK',
+            role: 'cancel',
+            handler: () => {
+              // this.platform.exitApp(); // Close this application
+            }
+          }
+        ]
       });
-      toast.present();
-    });
+      alert.present();
+    }
   }
 
   timerfn(item) {

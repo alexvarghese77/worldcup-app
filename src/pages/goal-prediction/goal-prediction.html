@@ -36,17 +36,14 @@
         <div class="teamname">{{team2Name}}</div>
         <ion-input class="goalInput" [(ngModel)]="goal2" placeholder="goal" type="number" pattern="\d*"></ion-input>
       </div>
-      <div>
-
-      </div>
     </ion-card-content>
-    <ion-row class="cardfooterp">
-      <button class="saveButton" (click)="savePredictedGoal()">
-        Save
-      </button>
-    </ion-row>
+    <!-- <ion-row class="cardfooterp">
+
+    </ion-row> -->
 
 
   </ion-card>
-
+  <button class="saveButton" (click)="savePredictedGoal()">
+    Save
+  </button>
 </ion-content>

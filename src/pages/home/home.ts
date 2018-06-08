@@ -109,6 +109,21 @@ export class HomePage {
     this.incrementCount();
     this.checkInterConnection();
     this.setUserDetails();
+
+    this.authService.getCurrentVersion().then(result => {
+      console.log('here', result);
+      if (result['v'] === 2) {
+        const alert = this.alertCtrl.create({
+          title: 'Mandatory Update!!',
+          message:
+            '<a class="update" href=' +
+            result['link'] +
+            '>Clike here to get the update</a>',
+          enableBackdropDismiss: false
+        });
+        alert.present();
+      }
+    });
   }
   incrementCount() {
     this.count++;
@@ -173,7 +188,7 @@ export class HomePage {
         this.userDetails = result;
         this.updateTodaysMatches();
         //this.myApp.setUserDetails(result.name);
-        this.events.publish('user:login',result.name);
+        this.events.publish('user:login', result.name);
       })
       .catch(() => console.log('Error'));
   }

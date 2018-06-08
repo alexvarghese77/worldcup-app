@@ -39,6 +39,20 @@ export class ChallengeService {
       });
     });
   }
+  getMegaChallanges() {
+    const challenge: firebase.database.Reference = firebase
+      .database()
+      .ref(`/Challanges/MegaChallenges`);
+
+    console.log('method called');
+
+    return new Promise(function(resolve, reject) {
+      challenge.on('value', personSnapshot => {
+        console.log('value updated in promis', personSnapshot.val());
+        resolve(personSnapshot.val());
+      });
+    });
+  }
 
   updatePrediction(cId, ans) {
     return this.storage.getAuth().then(result => {
@@ -46,8 +60,30 @@ export class ChallengeService {
       var node = { [user]: ans };
       const ref: firebase.database.Reference = firebase
         .database()
-        .ref(`/PredictedChallenges/`);
+        .ref(`/MegaChallangePredictions/`);
       var log = ref.child(cId).update(node);
+      this.updateInUser(cId, ans, user);
+    });
+  }
+  updateInUser(cId, ans, user) {
+    const ref: firebase.database.Reference = firebase
+      .database()
+      .ref(`/user/${user}/predictedMegaChallenges/`);
+    var log = ref.child(cId).update({ ans: ans });
+  }
+  getUserDetails() {
+    this.storage.getAuth().then(result => {
+      let user = result.email.replace(/\./g, '_');
+      const getUserData: firebase.database.Reference = firebase
+        .database()
+        .ref(`/user/${user}`);
+
+      getUserData.on('value', personSnapshot => {
+        console.log(personSnapshot.val());
+        var auth = personSnapshot.val();
+        auth.email = result.email;
+        this.storage.setAuth(auth);
+      });
     });
   }
 }
