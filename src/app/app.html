@@ -4,12 +4,14 @@
     <ion-title>{{name}}</ion-title>
   </ion-toolbar>
 
-  <ion-content>
-    <ion-list>
+  <ion-content class="sidemenu">
+    <ion-list class="list" no-lines>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon name="{{p.icon}}" item-left></ion-icon>
         {{p.title}}
       </button>
-      <button menuClose ion-item (click)="logout()">Logout</button>
+      <button menuClose ion-item (click)="logout()">
+        <ion-icon name="ios-log-out-outline" item-left></ion-icon>Logout</button>
     </ion-list>
   </ion-content>
 
