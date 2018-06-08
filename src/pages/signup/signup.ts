@@ -12,7 +12,6 @@ import { ValidateEmail } from '../../customValidations/customValidator';
 import { ValidateMobile } from '../../customValidations/customValidator';
 import { passwordValidator } from '../../customValidations/customValidator';
 import { Nav, Platform } from 'ionic-angular';
-import { Keyboard } from '@ionic-native/keyboard';
 /**
  * Generated class for the SignupPage page.
  *
@@ -32,13 +31,8 @@ export class SignupPage {
     private auth: AuthService,
     public navCtrl: NavController,
     private storage: LocalStorage,
-    public platform: Platform,
-    public keyboard: Keyboard
+    public platform: Platform
   ) {
-    platform.ready().then(() => {
-      // Here I'm using the keyboard class from ionic native.
-      keyboard.disableScroll(true);
-    });
     this.signup = this.formBuilder.group({
       name: ['', Validators.compose([Validators.required, ValidateName])],
       email: ['', Validators.compose([Validators.required, ValidateEmail])],
@@ -79,64 +73,4 @@ export class SignupPage {
   login() {
     this.navCtrl.setRoot(LoginPage);
   }
-
-  /* public recaptchaVerifier: firebase.auth.RecaptchaVerifier;
-  constructor(
-    public navCtrl: NavController,
-    public alertCtrl: AlertController,
-    private auth: AuthService
-  ) {}
-
-  ionViewDidLoad() {
-    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-      'recaptcha-container'
-    );
-  }
-  signIn(phoneNumber: number) {
-    const appVerifier = this.recaptchaVerifier;
-    const phoneNumberString = '+91' + phoneNumber;
-    console.log('appveri', appVerifier);
-    this.auth
-      .signUp(phoneNumberString, appVerifier)
-      .then(confirmationResult => {
-        // SMS sent. Prompt user to type the code from the message, then sign the
-        // user in with confirmationResult.confirm(code).
-        console.log('confirmresult', confirmationResult);
-        let prompt = this.alertCtrl.create({
-          title: 'Enter the Confirmation code',
-          inputs: [
-            { name: 'confirmationCode', placeholder: 'Confirmation Code' }
-          ],
-          buttons: [
-            {
-              text: 'Cancel',
-              handler: data => {
-                console.log('Cancel clicked');
-              }
-            },
-            {
-              text: 'Send',
-              handler: data => {
-                // Here we need to handle the confirmation code
-                confirmationResult
-                  .confirm(data.confirmationCode)
-                  .then(function(result) {
-                    // User signed in successfully.
-                    console.log(result.user);
-                    // ...
-                  })
-                  .catch(function(error) {
-                    // User couldn't sign in (bad verification code?)
-                    // ...
-                  });
-              }
-            }
-          ]
-        });
-        prompt.present();
-      })
-      .catch(function(error) {
-        console.error('SMS not sent', error);
-      });
-  }*/
 }
