@@ -12,10 +12,11 @@ import { Component, Input, NgZone } from '@angular/core';
 })
 export class TimerComponent {
   text: string = '05H : 30M :20S';
-
+  @Input() name: string;
   constructor(private zone: NgZone) {
     // Set the date we're counting down to
     this.timerCalc();
+    console.log('name*********', this.name);
   }
   updateText(t) {
     this.zone.run(() => {
@@ -23,7 +24,7 @@ export class TimerComponent {
     });
   }
   timerCalc() {
-    let countDownDate = new Date('Jun 8, 2018 15:37:25').getTime();
+    let countDownDate = new Date('Jun 9, 2018 15:37:25').getTime();
     console.log('countDownDate', countDownDate);
     // Update the count down every 1 second
     let x = setInterval(() => {

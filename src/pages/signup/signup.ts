@@ -12,7 +12,7 @@ import { ValidateEmail } from '../../customValidations/customValidator';
 import { ValidateMobile } from '../../customValidations/customValidator';
 import { passwordValidator } from '../../customValidations/customValidator';
 import { Nav, Platform } from 'ionic-angular';
-import { Keyboard } from '@ionic-native/keyboard';
+//import { Keyboard } from '@ionic-native/keyboard';
 /**
  * Generated class for the SignupPage page.
  *
@@ -32,12 +32,11 @@ export class SignupPage {
     private auth: AuthService,
     public navCtrl: NavController,
     private storage: LocalStorage,
-    public platform: Platform,
-    public keyboard: Keyboard
+    public platform: Platform
   ) {
     platform.ready().then(() => {
       // Here I'm using the keyboard class from ionic native.
-      keyboard.disableScroll(true);
+      //keyboard.disableScroll(true);
     });
     this.signup = this.formBuilder.group({
       name: ['', Validators.compose([Validators.required, ValidateName])],
