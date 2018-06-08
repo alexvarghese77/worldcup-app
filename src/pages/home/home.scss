@@ -11,6 +11,12 @@
   color: white;
   font-family: 'QUICKSAND-BOLD';
 }
+.today {
+  text-align: center;
+  font-family: 'QUICKSAND-BOLD';
+  width: 100%;
+  font-size: 20px;
+}
 .matchtimercontainer {
   display: flex;
   text-align: center;
@@ -20,6 +26,7 @@
 .homePageContainer {
   background: url(../assets/imgs/homebg.png);
   font-family: 'QUICKSAND-REGULAR';
+  //border: 2px solid #fff;
 }
 .point {
   flex: 1;

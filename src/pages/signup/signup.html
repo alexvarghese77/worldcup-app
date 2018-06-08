@@ -6,60 +6,34 @@
 -->
 <ion-header>
 
-  <!-- <ion-navbar>
-    <ion-title>Sign Up</ion-title>
-  </ion-navbar> -->
-
 </ion-header>
 
 
-<ion-content padding class="signUpContainer">
-  <div class="container">
+<ion-content no-bounce padding class="signUpContainer" ion-fixed>
+  <!-- <div class="container"> -->
 
-    <img src="assets/imgs/zabiLoginPage.png" class="zabiLoginPage">
-    <div class="inputcontainer">
-
-      <form [formGroup]="signup" (ngSubmit)="logForm()">
-        <ion-item class="inputRow">
-          <!-- <ion-label>Name</ion-label> -->
-          <ion-input placeholder="Name" type="text" formControlName="name"></ion-input>
-        </ion-item>
-        <ion-item class="inputRow">
-          <!-- <ion-label>Email</ion-label> -->
-          <ion-input placeholder="Email" type="text" formControlName="email"></ion-input>
-          <p *ngIf="emailIsCorrect">error message: incorrect email</p>
-        </ion-item>
-        <ion-item class="inputRow">
-          <!-- <ion-label>Mobile</ion-label> -->
-          <ion-input placeholder="Mobile" type="number" formControlName="mobile"></ion-input>
-
-        </ion-item>
-        <ion-item class="inputRow">
-          <!-- <ion-label>Password</ion-label> -->
-          <ion-input placeholder="Password" type="password" formControlName="password"></ion-input>
-        </ion-item>
-        <ion-item class="inputRow">
-          <!-- <ion-label>Confirm Password</ion-label> -->
-          <ion-input placeholder="Confirm Password" type="password" formControlName="cpassword"></ion-input>
-        </ion-item>
-        <button ion-button class="signUpButton" type="submit" [disabled]="!signup.valid">SignUp</button>
-      </form>
+  <img src="assets/imgs/zabiLoginPage.png" no-bounce class="zabiSignUpPage">
+  <div class="inputcontainerSignUp">
+    <form [formGroup]="signup" (ngSubmit)="logForm()">
+      <ion-item class="inputRow">
+        <ion-input placeholder="Name" type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item class="inputRow">
+        <ion-input placeholder="Email" type="text" formControlName="email"></ion-input>
+        <p *ngIf="emailIsCorrect">error message: incorrect email</p>
+      </ion-item>
+      <ion-item class="inputRow">
+        <ion-input placeholder="Mobile" type="number" formControlName="mobile"></ion-input>
+      </ion-item>
+      <ion-item class="inputRow">
+        <ion-input placeholder="Password" type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item class="inputRow">
+        <ion-input placeholder="Confirm Password" type="password" formControlName="cpassword"></ion-input>
+      </ion-item>
+      <button ion-button class="signUpButton" type="submit" [disabled]="!signup.valid">SignUp</button>
       <button class="backToLoginButton" ion-button (click)="login()">Login</button>
-    </div>
+    </form>
   </div>
 
 </ion-content>
-
-<!-- <ion-content padding>
-  <div id="recaptcha-container"></div>
-
-  <ion-item>
-    <ion-label stacked>Phone Number</ion-label>
-    <ion-input type="number" [(ngModel)]="phoneNumber"></ion-input>
-  </ion-item>
-
-  <button ion-button id="sign-in-button" (click)="signIn(phoneNumber)">
-    Sign In
-  </button>
-
-</ion-content> -->

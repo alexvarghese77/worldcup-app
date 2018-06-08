@@ -9,6 +9,8 @@ import { AlertController } from 'ionic-angular';
 import { DatePipe } from '@angular/common';
 import { LoadingController } from 'ionic-angular/index';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 
 @NgModule({
   providers: [Network, LocalNotifications]
@@ -34,6 +36,7 @@ export class HomePage {
     private loadingCtrl: LoadingController,
     private localNotifications: LocalNotifications
   ) {
+    Observable.interval(1000).subscribe();
     let loadingPopup = this.loadingCtrl.create({
       content: 'Loading data...'
     });

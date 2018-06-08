@@ -68,7 +68,7 @@ export class AuthService {
   getYesterdaysResults() {
     var date = new Date();
     var yesterday = new Date(date);
-    yesterday.setDate(date.getDate());
+    yesterday.setDate(date.getDate()-1);
     var ddmmyyyy = this.datepipe.transform(yesterday, 'dd-MM-yyyy');
     const fixture: firebase.database.Reference = firebase
       .database()

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, NgZone } from '@angular/core';
 
 /**
  * Generated class for the TimerComponent component.
@@ -13,16 +13,20 @@ import { Component, Input } from '@angular/core';
 export class TimerComponent {
   text: string = '05H : 30M :20S';
 
-  constructor() {
+  constructor(private zone: NgZone) {
     // Set the date we're counting down to
     this.timerCalc();
   }
-
+  updateText(t) {
+    this.zone.run(() => {
+      this.text = t;
+    });
+  }
   timerCalc() {
     let countDownDate = new Date('Jun 8, 2018 15:37:25').getTime();
     console.log('countDownDate', countDownDate);
     // Update the count down every 1 second
-    let x = setInterval(function() {
+    let x = setInterval(() => {
       // Get todays date and time
       var now = new Date().getTime();
       // Find the distance between now an the count down date
@@ -37,13 +41,18 @@ export class TimerComponent {
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       // Output the result in an element with id="demo"
-      this.text = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
-      //console.log(this.text);
+
+      var t = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+
       //If the count down is over, write some text
       if (distance < 0) {
         clearInterval(x);
-        this.text = 'EXPIRED';
+        //this.zone.run(() => {
+        var t = 'EXPIRED';
+
+        // });
       }
+      this.updateText(t);
     }, 1000);
   }
 }

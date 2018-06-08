@@ -10,6 +10,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { IonicStorageModule } from '@ionic/storage';
 import { DatePipe } from '@angular/common';
+import { Keyboard } from '@ionic-native/keyboard';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -74,6 +75,7 @@ import { LocalStorage } from '../services/localstorage.service';
     GameService,
     LocalStorage,
     DatePipe,
+    Keyboard,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

@@ -6,23 +6,24 @@
     </button>
     <ion-title>Home</ion-title>
   </ion-navbar>
+  <timer></timer>
 </ion-header>
 
 <ion-content padding class="homePageContainer">
 
   <div class="matchtimercontainer">
-    <div class="point">
+    <!-- <div class="point">
       POINTS
       <br> 180
-    </div>
-    <div class="timer">{{todayDate}}</div>
-    <div class="point">
+    </div> -->
+    <div class="today">{{todayDate}}</div>
+    <!-- <div class="point">
       Rank
       <br> 180
-    </div>
+    </div> -->
   </div>
 
-  <ion-card class="card" *ngFor="let item of todaysMatches" (click)="goToPrediction(item)">
+  <ion-card class="card" *ngFor="let item of todaysMatches" (click)="goToPrediction(item)" id='{{item.matchId}}'>
     <!-- <ion-card-header>
       {{item.date}}
     </ion-card-header> -->
@@ -47,5 +48,4 @@
       </ion-col>
     </ion-row>
   </ion-card>
-
 </ion-content>
