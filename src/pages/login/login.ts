@@ -9,6 +9,7 @@ import { AlertController } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
 import { LocalStorage } from '../../services/localstorage.service';
 import { ValidateEmail } from '../../customValidations/customValidator';
+import { GameService } from '../../services/game.service';
 /**
  * Generated class for the LoginPage page.
  *
@@ -30,7 +31,8 @@ export class LoginPage {
     private storage: LocalStorage,
     public navCtrl: NavController,
     public menu: MenuController,
-     private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private gameservice: GameService
   ) {
     this.todo = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, ValidateEmail])],
@@ -44,30 +46,31 @@ export class LoginPage {
   logForm() {
     console.log(this.todo.value);
     let credentials = this.todo.value;
-    this.auth.signInWithEmail(credentials).then(
-      () => {
-        this.storage.setAuth(credentials);
-        this.navCtrl.setRoot(TabsPage);
-      }
+    this.auth
+      .signInWithEmail(credentials)
+      .then(
+        () => {
+          this.storage.setAuth(credentials);
+          this.gameservice.getUserDetails();
+          this.navCtrl.setRoot(TabsPage);
+        }
 
-      // error => this.loginError = error.message
-    ).catch((error)=>{
-      
+        // error => this.loginError = error.message
+      )
+      .catch(error => {
         const alert = this.alertCtrl.create({
-        title: 'Invalid Login!',
-        message: 'Please check the credentials or Sign Up',
-        buttons: [
-          {
-            text: 'OK',
-            role: 'cancel',
-            handler: () => {
-              
+          title: 'Invalid Login!',
+          message: 'Please check the credentials or Sign Up',
+          buttons: [
+            {
+              text: 'OK',
+              role: 'cancel',
+              handler: () => {}
             }
-          }
-        ]
+          ]
+        });
+        alert.present();
       });
-      alert.present();
-    });
   }
   signup() {
     this.navCtrl.setRoot(SignupPage);

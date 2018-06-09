@@ -18,22 +18,22 @@
 
 
 <ion-content padding class="predictionContainer">
+
+
   <ion-card *ngIf="matchdetails">
-    <!-- <ion-card-header>
-      {{matchdetails.date}}
-    </ion-card-header> -->
+
     <ion-card-content class="cardp">
       <div>
         <img class="teamFlag" src="{{'assets/imgs/flags/'+matchdetails.team1Code+'.jpg'}}" alt="">
-        <div class="teamname"> {{matchdetails.team1Code}}</div>
+        <div class="teamname"> {{team1Name}}</div>
         <ion-input class="goalInput" [(ngModel)]="goal1" placeholder="goal" type="number" pattern="\d*"></ion-input>
       </div>
-      <div style="margin-top: 40%">
-        vs
+      <div style="margin-top: 20%" class="goals">
+        <span>vs</span>
       </div>
       <div>
         <img class="teamFlag" src="{{'assets/imgs/flags/'+matchdetails.team2Code+'.jpg'}}" alt="">
-        <div class="teamname">{{matchdetails.team2Code}}</div>
+        <div class="teamname">{{team2Name}}</div>
         <ion-input class="goalInput" [(ngModel)]="goal2" placeholder="goal" type="number" pattern="\d*"></ion-input>
       </div>
       <div>

@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import { storage } from 'firebase';
 import { LocalStorage } from '../../services/localstorage.service';
+import { GameService } from '../../services/game.service';
 
 @NgModule({
   providers: [Network, LocalNotifications]
@@ -28,6 +29,7 @@ export class HomePage {
   today = '';
   todayDate = '';
   userDetails;
+  matchgoals = 'vs';
 
   constructor(
     public navCtrl: NavController,
@@ -39,7 +41,8 @@ export class HomePage {
     public datepipe: DatePipe,
     private loadingCtrl: LoadingController,
     private localNotifications: LocalNotifications,
-    private localStorage: LocalStorage
+    private localStorage: LocalStorage,
+    private gameservice: GameService
   ) {
     Observable.interval(1000).subscribe();
     let loadingPopup = this.loadingCtrl.create({
@@ -68,7 +71,10 @@ export class HomePage {
       for (var key in result) {
         if (result.hasOwnProperty(key)) {
           var val = result[key];
+
+          this.gameservice.getUserDetails();
           this.todaysMatches.push(val);
+          this.setUserDetails();
         }
       }
       loadingPopup.dismiss();
@@ -76,13 +82,32 @@ export class HomePage {
   }
 
   goToPrediction(item) {
-    this.navCtrl.setRoot(GoalPredictionPage, { data: item });
+    if (this.testfn(item) !== 'Time Up') {
+      // console.log('Match details', item);
+      this.navCtrl.setRoot(GoalPredictionPage, { data: item });
+    } else {
+      const alert = this.alertCtrl.create({
+        title: 'Time Up!!',
+        message: 'Prediction time over!!',
+        buttons: [
+          {
+            text: 'OK',
+            role: 'cancel',
+            handler: () => {
+              // this.platform.exitApp(); // Close this application
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
   }
   ionViewWillEnter() {
     let date = new Date();
     this.today = this.datepipe.transform(date, 'dd MMM yyyy');
     this.incrementCount();
     this.checkInterConnection();
+    this.setUserDetails();
   }
   incrementCount() {
     this.count++;
@@ -137,24 +162,64 @@ export class HomePage {
     return t;
   }
 
-  getMatch(matchId) {
-    if (this.userDetails != null) {
-      return this.userDetails.predictedmatches[matchId]
-        ? this.userDetails.predictedmatches[matchId].team1Goal +
-            '-' +
-            this.userDetails.predictedmatches[matchId].team2Goal
-        : 'vs';
-    } else {
-      return 'vs';
-    }
-  }
-
   ionViewDidEnter() {
+    this.setUserDetails();
+  }
+  setUserDetails() {
     this.localStorage
       .getAuth()
       .then(result => {
         this.userDetails = result;
+        this.updateTodaysMatches();
       })
       .catch(() => console.log('Error'));
+  }
+  updateTodaysMatches() {
+    var team1goals = '',
+      team2goals = '',
+      vs = '';
+    if (this.userDetails != null && this.todaysMatches.length > 0) {
+      if (this.userDetails.predictedmatches) {
+        for (var i = 0; i < this.todaysMatches.length; i++) {
+          var matchID = this.todaysMatches[i].matchId;
+          if (this.userDetails.predictedmatches[matchID]) {
+            team1goals = this.userDetails.predictedmatches[matchID].team1Goal;
+            team2goals = this.userDetails.predictedmatches[matchID].team2Goal;
+            vs = '        -        ';
+            this.todaysMatches[i].team1goals = team1goals;
+            this.todaysMatches[i].vs = vs;
+            this.todaysMatches[i].team2goals = team2goals;
+          } else {
+            team1goals = '';
+            vs = 'VS';
+            team2goals = '';
+            this.todaysMatches[i].team1goals = team1goals;
+            this.todaysMatches[i].vs = vs;
+            this.todaysMatches[i].team2goals = team2goals;
+          }
+        }
+      } else {
+        for (var i = 0; i < this.todaysMatches.length; i++) {
+          var matchID = this.todaysMatches[i].matchId;
+          team1goals = '';
+          vs = 'VS';
+          team2goals = '';
+          this.todaysMatches[i].team1goals = team1goals;
+          this.todaysMatches[i].vs = vs;
+          this.todaysMatches[i].team2goals = team2goals;
+        }
+      }
+      console.log('asdasdsa', this.todaysMatches);
+    } else {
+      for (var i = 0; i < this.todaysMatches.length; i++) {
+        var matchID = this.todaysMatches[i].matchId;
+        team1goals = '';
+        vs = 'VS';
+        team2goals = '';
+        this.todaysMatches[i].team1goals = team1goals;
+        this.todaysMatches[i].vs = vs;
+        this.todaysMatches[i].team2goals = team2goals;
+      }
+    }
   }
 }
