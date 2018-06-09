@@ -73,19 +73,15 @@ export class HomePage {
       }
       loadingPopup.dismiss();
     });
-
-    console.log(this.todaysMatches);
   }
 
   goToPrediction(item) {
-    console.log('Match details', item);
     this.navCtrl.setRoot(GoalPredictionPage, { data: item });
   }
   ionViewWillEnter() {
     let date = new Date();
     this.today = this.datepipe.transform(date, 'dd MMM yyyy');
     this.incrementCount();
-    console.log(this.count);
     this.checkInterConnection();
   }
   incrementCount() {
@@ -115,7 +111,6 @@ export class HomePage {
   }
 
   testfn(item) {
-    //console.log('method called');
     var timeArr = item.date.split('-');
     var time = `${timeArr[1]}-${timeArr[0]}-${timeArr[2]} ${item.time}`;
     var countDownDate = new Date(time).getTime();
@@ -144,8 +139,6 @@ export class HomePage {
 
   getMatch(matchId) {
     if (this.userDetails != null) {
-      // debugger;
-      //console.log("userDetails------------",this.userDetails.predictedmatches[matchId].team1Goal);
       return this.userDetails.predictedmatches[matchId]
         ? this.userDetails.predictedmatches[matchId].team1Goal +
             '-' +
