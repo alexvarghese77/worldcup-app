@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl
+} from '@angular/forms';
 //import { FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { LoginPage } from '../login/login';
@@ -49,19 +54,19 @@ export class SignupPage {
         ])
       ],
       password: [
-        '',
+        '2',
         Validators.compose([Validators.required, Validators.minLength(6)])
       ],
       cpassword: [
-        '',
+        '1',
         Validators.compose([
           Validators.required,
-          Validators.minLength(6),
-          passwordValidator.bind(this)
+          Validators.minLength(6)
         ])
       ]
     });
   }
+
   logForm() {
     console.log(this.signup.value);
     let credentials = this.signup.value;

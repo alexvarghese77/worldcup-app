@@ -7,8 +7,9 @@ import { AlertController } from 'ionic-angular';
 // import { Network } from '@ionic-native/network';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { FeedbackPage } from '../pages/feedback/feedback';
+import { HowToPlayPage } from '../pages/how-to-play/how-to-play';
+import { LeaderboardPage } from '../pages/leaderboard/leaderboard';
 //import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 
@@ -77,11 +78,10 @@ export class MyApp {
     //debugger;
     // // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Leaderboard', component: TabsPage },
-      { title: 'Leaderboard', component: TabsPage },
-      { title: 'Howto Play', component: AboutPage },
-      { title: 'FAQ', component: ContactPage },
-      { title: 'Terms and conditions', component: ContactPage }
+      { title: 'Leaderboard', component: LeaderboardPage },
+      { title: 'Leaderboard', component: LeaderboardPage },
+      { title: 'Howto Play', component: HowToPlayPage },
+      { title: 'Feedback', component: FeedbackPage }
     ];
   }
   openPage(page) {

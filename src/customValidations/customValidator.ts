@@ -1,4 +1,4 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 
 export function ValidateEmail(control: AbstractControl) {
   console.log('validator called');
@@ -28,10 +28,8 @@ export function ValidateMobile(control: AbstractControl) {
 }
 
 export function passwordValidator(control: AbstractControl) {
-  // if (control.value != null && control.get('password').value != null) {
-  //   if (control.value === control.get('password').value) {
-  //     return null;
-  //   }
-  // }
-  // return { validUrl: true };
+  if (control.get('password').value === control.get('cpassword').value) {
+    return { invalid: true };
+  }
+  return { validUrl: true };
 }

@@ -10,7 +10,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { IonicStorageModule } from '@ionic/storage';
 import { DatePipe } from '@angular/common';
-import { NativeStorage } from '@ionic-native/native-storage';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -21,6 +20,9 @@ import { SignupPage } from '../pages/signup/signup';
 import { GoalPredictionPage } from '../pages/goal-prediction/goal-prediction';
 import { ChallengesPage } from '../pages/challenges/challenges';
 import { ResultPage } from '../pages/result/result';
+import { FeedbackPage } from '../pages/feedback/feedback';
+import { HowToPlayPage } from '../pages/how-to-play/how-to-play';
+import { LeaderboardPage } from '../pages/leaderboard/leaderboard';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -39,7 +41,10 @@ import { LocalStorage } from '../services/localstorage.service';
     LoginPage,
     SignupPage,
     GoalPredictionPage,
-    ResultPage
+    ResultPage,
+    FeedbackPage,
+    HowToPlayPage,
+    LeaderboardPage
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,10 @@ import { LocalStorage } from '../services/localstorage.service';
     LoginPage,
     SignupPage,
     GoalPredictionPage,
-    ResultPage
+    ResultPage,
+    FeedbackPage,
+    HowToPlayPage,
+    LeaderboardPage
   ],
   providers: [
     StatusBar,
@@ -72,7 +80,6 @@ import { LocalStorage } from '../services/localstorage.service';
     GameService,
     LocalStorage,
     DatePipe,
-    NativeStorage,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

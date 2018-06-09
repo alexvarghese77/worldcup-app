@@ -23,6 +23,9 @@ export class GameService {
   writePredictedGoal(predictionDetails) {
     return this.storage.getAuth().then(result => {
       let user = result.email.replace(/\./g, '_');
+      result.name
+        ? (predictionDetails.name = result.name)
+        : (predictionDetails.name = result.email);
       const ref: firebase.database.Reference = firebase
         .database()
         .ref(`/user/${user}/predictedmatches/`);
