@@ -110,6 +110,7 @@ export class HomePage {
     this.incrementCount();
     console.log(this.count);
     this.checkInterConnection();
+    this.setUserDetails();
   }
   incrementCount() {
     this.count++;
@@ -188,7 +189,7 @@ export class HomePage {
           if (this.userDetails.predictedmatches[matchID]) {
             team1goals = this.userDetails.predictedmatches[matchID].team1Goal;
             team2goals = this.userDetails.predictedmatches[matchID].team2Goal;
-            vs = '-';
+            vs = '        -        ';
             this.todaysMatches[i].team1goals = team1goals;
             this.todaysMatches[i].vs = vs;
             this.todaysMatches[i].team2goals = team2goals;
