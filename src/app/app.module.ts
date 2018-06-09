@@ -29,6 +29,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../services/auth.service';
 import { GameService } from '../services/game.service';
 import { LocalStorage } from '../services/localstorage.service';
+import { ChallengeService } from '../services/challenge.service';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { LocalStorage } from '../services/localstorage.service';
     AuthService,
     GameService,
     LocalStorage,
+    ChallengeService,
     DatePipe,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]

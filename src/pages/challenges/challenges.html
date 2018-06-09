@@ -7,10 +7,45 @@
     </button>
     <ion-title>Challenges</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <ion-card>
 
+    <ion-card-content class="cardp" *ngFor="let item of todaysMatches">
+      <div>{{item.cid}} . {{item.challenge}}</div>
+      <div *ngIf="item.inputBox">
+        <ion-input class="" placeholder="goal" type="text"></ion-input>
+      </div>
+      <ion-list *ngIf="item.multippleChoice" radio-group>
+        <ion-item>
+          <ion-label>{{item.option1}}</ion-label>
+          <ion-radio value="{{item.option1}}"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>{{item.option2}}</ion-label>
+          <ion-radio value="{{item.option2}}"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>{{item.option3}}</ion-label>
+          <ion-radio value="{{item.option3}}"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>{{item.option4}}</ion-label>
+          <ion-radio value="{{item.option4}}"></ion-radio>
+        </ion-item>
+
+      </ion-list>
+    </ion-card-content>
+    <ion-row class="cardfooterp">
+      <button class="saveButton">
+        Save
+      </button>
+    </ion-row>
+
+
+  </ion-card>
 </ion-content>

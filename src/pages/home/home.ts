@@ -71,13 +71,12 @@ export class HomePage {
       for (var key in result) {
         if (result.hasOwnProperty(key)) {
           var val = result[key];
-
-          this.gameservice.getUserDetails();
           this.todaysMatches.push(val);
-          this.setUserDetails();
         }
       }
       loadingPopup.dismiss();
+      this.gameservice.getUserDetails();
+      this.setUserDetails();
     });
   }
 
