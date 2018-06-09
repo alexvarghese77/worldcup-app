@@ -21,7 +21,7 @@ export class GameService {
   }
 
   writePredictedGoal(predictionDetails) {
-    return this.getLocaldata().then(result => {
+    return this.storage.getAuth().then(result => {
       let user = result.email.replace(/\./g, '_');
       const ref: firebase.database.Reference = firebase
         .database()
@@ -61,7 +61,9 @@ export class GameService {
 
       getUserData.on('value', personSnapshot => {
         console.log(personSnapshot.val());
-        this.storage.setAuth(personSnapshot.val());
+        var auth = personSnapshot.val();
+        auth.email = result.email;
+        this.storage.setAuth(auth);
       });
     });
   }

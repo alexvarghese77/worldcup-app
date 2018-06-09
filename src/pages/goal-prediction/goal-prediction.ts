@@ -17,7 +17,10 @@ import { ToastController } from 'ionic-angular';
   templateUrl: 'goal-prediction.html'
 })
 export class GoalPredictionPage {
-  matchdetails: object;
+  matchdetails: '';
+  goal1 = '';
+  goal2 = '';
+  user = '';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -25,11 +28,15 @@ export class GoalPredictionPage {
     private storage: LocalStorage,
     private toastCtrl: ToastController
   ) {
-    console.log(this.navParams.get('data'));
-    this.matchdetails = this.navParams.get('data');
+    this.setPredictedGoals();
   }
-  goal1 = '';
-  goal2 = '';
+  setPredictedGoals() {
+    //console.log(this.navParams.get('data'));
+    var matchD = this.navParams.get('data');
+    this.matchdetails = matchD;
+    this.goal1 = matchD.team1goals + '';
+    this.goal2 = matchD.team2goals + '';
+  }
   savePredictedGoal() {
     var match = this.navParams.get('data');
     console.log('in predict goal');
@@ -41,19 +48,26 @@ export class GoalPredictionPage {
       });
       toast.present();
     }
+    this.storage.getAuth().then(result => {
+      this.user = result;
+    });
     var predictionDetails = {
       matchId: match.matchId,
       team1Goal: parseInt(this.goal1),
       team2Goal: parseInt(this.goal2),
       date: match.date
     };
+
     this.gameservice
       .writePredictedGoal(predictionDetails)
       .then(result => {
+        console.log('in predict getUserDetails');
         this.gameservice.getUserDetails();
         this.navCtrl.setRoot(HomePage);
       })
-      .catch(err => {});
+      .catch(err => {
+        console.log(err);
+      });
   }
   backButtonClick() {
     console.log('back button pressed');

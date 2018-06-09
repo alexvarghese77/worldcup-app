@@ -12,6 +12,7 @@ import { ValidateEmail } from '../../customValidations/customValidator';
 import { ValidateMobile } from '../../customValidations/customValidator';
 import { passwordValidator } from '../../customValidations/customValidator';
 import { Nav, Platform } from 'ionic-angular';
+import { GameService } from '../../services/game.service';
 //import { Keyboard } from '@ionic-native/keyboard';
 /**
  * Generated class for the SignupPage page.
@@ -32,7 +33,8 @@ export class SignupPage {
     private auth: AuthService,
     public navCtrl: NavController,
     private storage: LocalStorage,
-    public platform: Platform
+    public platform: Platform,
+    private gameservice: GameService
   ) {
     this.signup = this.formBuilder.group({
       name: ['', Validators.compose([Validators.required, ValidateName])],
@@ -68,6 +70,7 @@ export class SignupPage {
     this.auth.signUp(credentials).then(() => {
       this.auth.updateUser(credentials);
       this.storage.setAuth(credentials);
+      this.gameservice.getUserDetails();
       this.navCtrl.setRoot(TabsPage);
     });
   }

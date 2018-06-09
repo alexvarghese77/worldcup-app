@@ -48,8 +48,10 @@ export class AuthService {
       .child(credentials.email.replace(/\./g, '_'))
       .update({ mobile: credentials.mobile });
   }
+
   getTodaysMatchs() {
     var date = new Date();
+    date.setDate(date.getDate());
     var ddmmyyyy = this.datepipe.transform(date, 'dd-MM-yyyy');
     const fixture: firebase.database.Reference = firebase
       .database()
@@ -68,7 +70,7 @@ export class AuthService {
   getYesterdaysResults() {
     var date = new Date();
     var yesterday = new Date(date);
-    yesterday.setDate(date.getDate()-1);
+    yesterday.setDate(date.getDate() - 1);
     var ddmmyyyy = this.datepipe.transform(yesterday, 'dd-MM-yyyy');
     const fixture: firebase.database.Reference = firebase
       .database()
