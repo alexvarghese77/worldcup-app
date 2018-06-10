@@ -51,7 +51,7 @@ export class AuthService {
 
   getTodaysMatchs() {
     var date = new Date();
-    date.setDate(date.getDate() - 1);
+    date.setDate(date.getDate());
     var ddmmyyyy = this.datepipe.transform(date, 'dd-MM-yyyy');
     const fixture: firebase.database.Reference = firebase
       .database()

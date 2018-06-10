@@ -14,34 +14,39 @@
 
     <ion-card-content class="cardc">
       <div class="ques">
-        <div>{{item.cId}} . {{item.challenge}}</div>
+        <div>
+          {{item.challenge}}
+        </div>
         <div *ngIf="item.inputBox" class="inputBox">
           <ion-input class="input" placeholder="here" type="text"></ion-input>
-          <button class="saveButton">
+          <button class="saveButton" (click)="saveChallange(item.cId)">
             Predict
           </button>
         </div>
-        <ion-list *ngIf="item.multippleChoice" radio-group>
+        <ion-list *ngIf="item.multippleChoice" radio-group class="radioContainer">
           <ion-item>
-            <ion-label>{{item.option1}}</ion-label>
             <ion-radio value="{{item.option1}}"></ion-radio>
+            <ion-label>{{item.option1}}</ion-label>
           </ion-item>
 
           <ion-item>
-            <ion-label>{{item.option2}}</ion-label>
             <ion-radio value="{{item.option2}}"></ion-radio>
+            <ion-label>{{item.option2}}</ion-label>
           </ion-item>
 
           <ion-item>
-            <ion-label>{{item.option3}}</ion-label>
             <ion-radio value="{{item.option3}}"></ion-radio>
+            <ion-label>{{item.option3}}</ion-label>
           </ion-item>
 
           <ion-item>
-            <ion-label>{{item.option4}}</ion-label>
             <ion-radio value="{{item.option4}}"></ion-radio>
+            <ion-label>{{item.option4}}</ion-label>
           </ion-item>
-          <button class="saveButton">
+          <ion-item>
+
+          </ion-item>
+          <button class="saveButtonRadio" (click)="saveChallange(item.cId)">
             Predict
           </button>
         </ion-list>
@@ -49,8 +54,10 @@
       </div>
     </ion-card-content>
 
-    <ion-row class="cardfooterp">
-      {{timerfn(item)}}
+    <ion-row class=" cardfooterp ">
+      <ion-col>
+        {{timerfn(item)}}
+      </ion-col>
     </ion-row>
 
   </ion-card>

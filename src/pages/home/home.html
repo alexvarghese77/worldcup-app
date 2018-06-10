@@ -9,7 +9,7 @@
   <!-- <timer></timer> -->
 </ion-header>
 
-<ion-content padding class="homePageContainer">
+<ion-content *ngIf="isThereAnyMatchTdy" padding class="homePageContainer">
 
   <div class="matchtimercontainer">
     <!-- <div class="point">
@@ -50,4 +50,8 @@
       </ion-col>
     </ion-row>
   </ion-card>
+</ion-content>
+<ion-content *ngIf="!isThereAnyMatchTdy" padding class="homePageNoMAtchContainer">
+  <div class="noMatchLogo"></div>
+  <div class="noMatch">No Matches Today</div>
 </ion-content>

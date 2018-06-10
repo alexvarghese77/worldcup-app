@@ -30,7 +30,7 @@ export class HomePage {
   todayDate = '';
   userDetails;
   matchgoals = 'vs';
-
+  isThereAnyMatchTdy = true;
   constructor(
     public navCtrl: NavController,
     private authService: AuthService,
@@ -75,6 +75,7 @@ export class HomePage {
         }
       }
       loadingPopup.dismiss();
+      this.isThereAnyMatchTdy = this.todaysMatches.length > 0 ? true : false;
       this.gameservice.getUserDetails();
       this.setUserDetails();
     });

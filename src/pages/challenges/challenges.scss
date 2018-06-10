@@ -1,6 +1,13 @@
 .cardc div {
   width: 100%;
 }
+.card {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  font-family: 'QUICKSAND-BOLD';
+  width: 90%;
+  margin: 5% auto;
+}
 .cPageContainer {
   background: url(../assets/imgs/homebg.png);
   font-family: 'QUICKSAND-REGULAR';
@@ -8,30 +15,60 @@
 }
 .cardc {
   //   background: rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.3);
+  background: rgb(255, 255, 255);
   border-radius: 20px;
   font-family: 'QUICKSAND-BOLD';
   grid-template: none;
 }
-.cardc .item-radio .item-content {
-  background-color: black !important;
-  color: white;
-}
 .ques {
-  background-color: darkcyan;
-  border-bottom-left-radius: 0px;
   padding-top: 6px;
-  border: 2px solid darkcyan;
-  border-radius: 10px;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 0px;
-  color: white;
+  text-align: justify;
+  border-radius: 5px;
   font-family: 'QUICKSAND-REGULAR';
+  font-weight: bold;
 }
 .inputBox {
   background-color: white;
   font-family: 'QUICKSAND-REGULAR';
 }
 .inputBox .input {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
+  margin-bottom: 10px;
+  border-radius: 10px;
+  height: 40px;
+  color: white;
+  margin-top: 10px;
+}
+.radioContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.cardfooterp {
+  text-align: center;
+  background: #1274af;
+  font-family: 'QUICKSAND-REGULAR';
+  color: white;
+}
+.cardfooterp .col {
+  text-align: center;
+  font-family: 'QUICKSAND-REGULAR';
+  color: white;
+}
+
+.cPageContainer .saveButton {
+  width: 30%;
+  background-color: forestgreen;
+  color: white;
+  height: 28px;
+  float: right;
+  border-radius: 10px;
+}
+.cPageContainer .saveButtonRadio {
+  width: 60%;
+  background-color: forestgreen;
+  color: white;
+  height: 28px;
+  float: right;
+  border-radius: 10px;
+  margin-left: 40%;
 }

@@ -17,7 +17,7 @@
 </ion-header>
 
 
-<ion-content padding class="resultPageContainer">
+<ion-content *ngIf="isThereAnyResultTdy" padding class="resultPageContainer">
   <ion-card class="cardResults" *ngFor="let item of todaysResults">
     <ion-card-content class="cardResultContecnt">
       <div class="team1flag">
@@ -45,4 +45,8 @@
     </ion-row>
   </ion-card>
 
+</ion-content>
+<ion-content *ngIf="!isThereAnyResultTdy" padding class="homePageNoMAtchContainer">
+  <div class="noMatchLogo"></div>
+  <div class="noMatch">No Results Today</div>
 </ion-content>

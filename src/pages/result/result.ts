@@ -16,6 +16,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ResultPage {
   todaysResults = [];
+  isThereAnyResultTdy = true;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -33,6 +34,7 @@ export class ResultPage {
             this.todaysResults.push(val);
           }
         }
+        this.isThereAnyResultTdy = this.todaysResults.length > 0 ? true : false;
       })
       .catch(error => console.log('error'));
   }
