@@ -14,6 +14,7 @@ import 'rxjs/add/observable/interval';
 import { storage } from 'firebase';
 import { LocalStorage } from '../../services/localstorage.service';
 import { GameService } from '../../services/game.service';
+import { Events } from 'ionic-angular';
 
 @NgModule({
   providers: [Network, LocalNotifications]
@@ -35,7 +36,7 @@ export class HomePage {
     public navCtrl: NavController,
     private authService: AuthService,
     public network: Network,
-    //public myApp: MyApp,
+    public events: Events,
     public platform: Platform,
     private alertCtrl: AlertController,
     public datepipe: DatePipe,
@@ -171,6 +172,8 @@ export class HomePage {
       .then(result => {
         this.userDetails = result;
         this.updateTodaysMatches();
+        //this.myApp.setUserDetails(result.name);
+        this.events.publish('user:login',result.name);
       })
       .catch(() => console.log('Error'));
   }

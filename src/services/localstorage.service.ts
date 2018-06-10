@@ -7,7 +7,7 @@ export class LocalStorage {
     console.log('storage initalised');
   }
   setAuth(credentials) {
-    this.storage.set('user', credentials);
+    return this.storage.set('user', credentials);
   }
   getAuth() {
     return this.storage.get('user');

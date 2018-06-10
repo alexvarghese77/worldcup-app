@@ -50,9 +50,10 @@ export class LoginPage {
       .signInWithEmail(credentials)
       .then(
         () => {
-          this.storage.setAuth(credentials);
-          this.gameservice.getUserDetails();
-          this.navCtrl.setRoot(TabsPage);
+          this.storage.setAuth(credentials).then(result => {
+            this.gameservice.getUserDetails();
+            this.navCtrl.setRoot(TabsPage);
+          });
         }
 
         // error => this.loginError = error.message
