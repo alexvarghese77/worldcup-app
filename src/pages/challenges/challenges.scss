@@ -1,3 +1,37 @@
 .cardc div {
   width: 100%;
 }
+.cPageContainer {
+  background: url(../assets/imgs/homebg.png);
+  font-family: 'QUICKSAND-REGULAR';
+  //border: 2px solid #fff;
+}
+.cardc {
+  //   background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  font-family: 'QUICKSAND-BOLD';
+  grid-template: none;
+}
+.cardc .item-radio .item-content {
+  background-color: black !important;
+  color: white;
+}
+.ques {
+  background-color: darkcyan;
+  border-bottom-left-radius: 0px;
+  padding-top: 6px;
+  border: 2px solid darkcyan;
+  border-radius: 10px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 0px;
+  color: white;
+  font-family: 'QUICKSAND-REGULAR';
+}
+.inputBox {
+  background-color: white;
+  font-family: 'QUICKSAND-REGULAR';
+}
+.inputBox .input {
+  background-color: rgba(0, 0, 0, 0.3);
+}

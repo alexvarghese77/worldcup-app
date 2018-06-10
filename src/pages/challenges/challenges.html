@@ -9,14 +9,17 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="cPageContainer">
   <ion-card *ngFor="let item of todaysChallenges">
 
     <ion-card-content class="cardc">
-      <div>
+      <div class="ques">
         <div>{{item.cId}} . {{item.challenge}}</div>
-        <div *ngIf="item.inputBox">
-          <ion-input class="" placeholder="goal" type="text"></ion-input>
+        <div *ngIf="item.inputBox" class="inputBox">
+          <ion-input class="input" placeholder="here" type="text"></ion-input>
+          <button class="saveButton">
+            Predict
+          </button>
         </div>
         <ion-list *ngIf="item.multippleChoice" radio-group>
           <ion-item>
@@ -38,18 +41,17 @@
             <ion-label>{{item.option4}}</ion-label>
             <ion-radio value="{{item.option4}}"></ion-radio>
           </ion-item>
-
+          <button class="saveButton">
+            Predict
+          </button>
         </ion-list>
 
       </div>
     </ion-card-content>
 
     <ion-row class="cardfooterp">
-      <button class="saveButton">
-        Save
-      </button>
+      {{timerfn(item)}}
     </ion-row>
-
 
   </ion-card>
 </ion-content>
