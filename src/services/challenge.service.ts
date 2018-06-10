@@ -2,6 +2,7 @@ import { Injectable, Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { DatePipe } from '@angular/common';
+import { LocalStorage } from './localstorage.service';
 
 @Component({
   providers: [DatePipe]
@@ -10,7 +11,11 @@ import { DatePipe } from '@angular/common';
 export class ChallengeService {
   private user: firebase.User;
 
-  constructor(public afAuth: AngularFireAuth, public datepipe: DatePipe) {
+  constructor(
+    public afAuth: AngularFireAuth,
+    public datepipe: DatePipe,
+    private storage: LocalStorage
+  ) {
     afAuth.authState.subscribe(user => {
       this.user = user;
       console.log('state of user', this.user);
@@ -32,6 +37,17 @@ export class ChallengeService {
         console.log('value updated in promis', personSnapshot.val());
         resolve(personSnapshot.val());
       });
+    });
+  }
+
+  updatePrediction(cId, ans) {
+    return this.storage.getAuth().then(result => {
+      let user = result.email.replace(/\./g, '_');
+      var node = { [user]: ans };
+      const ref: firebase.database.Reference = firebase
+        .database()
+        .ref(`/PredictedChallenges/`);
+      var log = ref.child(cId).update(node);
     });
   }
 }

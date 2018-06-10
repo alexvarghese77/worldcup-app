@@ -5,6 +5,7 @@ import { ChallengeService } from '../../services/challenge.service';
 import { LoadingController } from 'ionic-angular/index';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
+import { ToastController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -19,7 +20,8 @@ export class ChallengesPage {
     public navParams: NavParams,
     public datepipe: DatePipe,
     public challengeService: ChallengeService,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController
   ) {
     Observable.interval(1000).subscribe();
     let loadingPopup = this.loadingCtrl.create({
@@ -43,6 +45,18 @@ export class ChallengesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChallengesPage');
+  }
+  saveChallangeInput(cId) {
+    var ele = <HTMLInputElement>document.getElementById(cId);
+    var ans = ele.value;
+    this.challengeService.updatePrediction(cId, ans).then(result => {
+      let toast = this.toastCtrl.create({
+        message: 'Successfully Saved',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+    });
   }
 
   timerfn(item) {

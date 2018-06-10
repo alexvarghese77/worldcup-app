@@ -18,10 +18,11 @@
           {{item.challenge}}
         </div>
         <div *ngIf="item.inputBox" class="inputBox">
-          <ion-input class="input" placeholder="here" type="text"></ion-input>
-          <button class="saveButton" (click)="saveChallange(item.cId)">
+          <input class="input" placeholder="here" id="{{item.cId}}" type="text">
+          <button class="saveButton" (click)="saveChallangeInput(item.cId)">
             Predict
           </button>
+
         </div>
         <ion-list *ngIf="item.multippleChoice" radio-group class="radioContainer">
           <ion-item>
@@ -46,7 +47,7 @@
           <ion-item>
 
           </ion-item>
-          <button class="saveButtonRadio" (click)="saveChallange(item.cId)">
+          <button class="saveButtonRadio" (click)="saveChallangeRadio(item.cId)">
             Predict
           </button>
         </ion-list>
