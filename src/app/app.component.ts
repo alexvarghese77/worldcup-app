@@ -4,6 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { App } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { Events } from 'ionic-angular';
+
 // import { Network } from '@ionic-native/network';
 
 import { TabsPage } from '../pages/tabs/tabs';
@@ -27,8 +29,10 @@ export class MyApp {
   rootPage: any;
   //rootPage:any = TabsPage;
   pages: Array<{ title: string; component: any }>;
-
+  name = 'Hi dude';
+  point = 0;
   constructor(
+    public events: Events,
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
@@ -36,6 +40,10 @@ export class MyApp {
     public app: App,
     private alertCtrl: AlertController // private network: Network
   ) {
+    events.subscribe('user:login', name => {
+      this.setUserDetails(name);
+    });
+
     platform.registerBackButtonAction(() => {
       let nav = app.getActiveNavs()[0];
       let activeView = nav.getActive();
@@ -119,4 +127,9 @@ export class MyApp {
       alert.present();
     }
   }*/
+  setUserDetails(name) {
+    this.name = name;
+    //this.point=point;
+  }
+ 
 }
