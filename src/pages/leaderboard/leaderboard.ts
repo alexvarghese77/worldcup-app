@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the LeaderboardPage page.
@@ -11,15 +12,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-leaderboard',
-  templateUrl: 'leaderboard.html',
+  templateUrl: 'leaderboard.html'
 })
 export class LeaderboardPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LeaderboardPage');
   }
-
+  backButtonClick() {
+    console.log('back button pressed');
+    this.navCtrl.setRoot(HomePage);
+  }
 }

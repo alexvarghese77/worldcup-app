@@ -18,7 +18,6 @@ export class ChallengeService {
   }
 
   getChallanges() {
-    debugger;
     var date = new Date();
     date.setDate(date.getDate());
     var ddmmyyyy = this.datepipe.transform(date, 'dd-MM-yyyy');
