@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the HowToPlayPage page.
@@ -21,5 +22,8 @@ export class HowToPlayPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HowToPlayPage');
   }
-
+  backButtonClick() {
+    console.log('back button pressed');
+    this.navCtrl.setRoot(HomePage);
+  }
 }

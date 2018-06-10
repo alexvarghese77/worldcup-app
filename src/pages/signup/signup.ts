@@ -39,7 +39,8 @@ export class SignupPage {
     public navCtrl: NavController,
     private storage: LocalStorage,
     public platform: Platform,
-    private gameservice: GameService
+    private gameservice: GameService,
+    private alertCtrl: AlertController
   ) {
     this.signup = this.formBuilder.group({
       name: ['', Validators.compose([Validators.required, ValidateName])],
@@ -54,15 +55,12 @@ export class SignupPage {
         ])
       ],
       password: [
-        '2',
+        '',
         Validators.compose([Validators.required, Validators.minLength(6)])
       ],
       cpassword: [
-        '1',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(6)
-        ])
+        '',
+        Validators.compose([Validators.required, Validators.minLength(6)])
       ]
     });
   }
@@ -70,14 +68,30 @@ export class SignupPage {
   logForm() {
     console.log(this.signup.value);
     let credentials = this.signup.value;
-
+    if (credentials.password === credentials.cpassword) {
+      this.auth.signUp(credentials).then(() => {
+        this.auth.updateUser(credentials);
+        this.storage.setAuth(credentials);
+        this.gameservice.getUserDetails();
+        this.navCtrl.setRoot(TabsPage);
+      });
+    } else {
+      const alert = this.alertCtrl.create({
+        title: 'Alert',
+        message: 'Password and confirm password are not matching',
+        buttons: [
+          {
+            text: 'OK',
+            role: 'cancel',
+            handler: () => {
+              // this.platform.exitApp(); // Close this application
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
     //*******mobile number varification code here */
-    this.auth.signUp(credentials).then(() => {
-      this.auth.updateUser(credentials);
-      this.storage.setAuth(credentials);
-      this.gameservice.getUserDetails();
-      this.navCtrl.setRoot(TabsPage);
-    });
   }
   login() {
     this.navCtrl.setRoot(LoginPage);

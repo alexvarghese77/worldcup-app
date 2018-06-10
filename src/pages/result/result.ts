@@ -24,14 +24,17 @@ export class ResultPage {
   ) {
     //gameservice.getMatchPrizeWinners();
 
-    authService.getYesterdaysResults().then(result => {
-      for (var key in result) {
-        if (result.hasOwnProperty(key)) {
-          var val = result[key];
-          this.todaysResults.push(val);
+    authService
+      .getYesterdaysResults()
+      .then(result => {
+        for (var key in result) {
+          if (result.hasOwnProperty(key)) {
+            var val = result[key];
+            this.todaysResults.push(val);
+          }
         }
-      }
-    });
+      })
+      .catch(error => console.log('error'));
   }
 
   ionViewDidLoad() {
