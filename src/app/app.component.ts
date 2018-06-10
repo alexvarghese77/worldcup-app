@@ -29,7 +29,7 @@ export class MyApp {
   rootPage: any;
   //rootPage:any = TabsPage;
   pages: Array<{ title: string; component: any }>;
-  name = 'Hi dude';
+  name = 'ZABIVAKA';
   point = 0;
   constructor(
     public events: Events,
