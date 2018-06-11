@@ -16,6 +16,7 @@ import { ValidateName } from '../../customValidations/customValidator';
 import { ValidateEmail } from '../../customValidations/customValidator';
 import { ValidateMobile } from '../../customValidations/customValidator';
 import { passwordValidator } from '../../customValidations/customValidator';
+import { ValidateEmpNum } from '../../customValidations/customValidator';
 import { Nav, Platform } from 'ionic-angular';
 import { GameService } from '../../services/game.service';
 //import { Keyboard } from '@ionic-native/keyboard';
@@ -52,6 +53,15 @@ export class SignupPage {
           Validators.minLength(10),
           Validators.maxLength(15),
           ValidateMobile
+        ])
+      ],
+      empID: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(7),
+          ValidateEmpNum
         ])
       ],
       password: [

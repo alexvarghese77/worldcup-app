@@ -26,6 +26,13 @@ export function ValidateMobile(control: AbstractControl) {
   }
   return { validUrl: true };
 }
+export function ValidateEmpNum(control: AbstractControl) {
+  var re = /^[\d*]{6,7}$/;
+  if (re.test(control.value.toLowerCase())) {
+    return null;
+  }
+  return { validUrl: true };
+}
 
 export function passwordValidator(control: AbstractControl) {
   if (control.get('password').value === control.get('cpassword').value) {

@@ -47,6 +47,9 @@ export class AuthService {
     ref
       .child(credentials.email.replace(/\./g, '_'))
       .update({ mobile: credentials.mobile });
+    ref
+      .child(credentials.email.replace(/\./g, '_'))
+      .update({ empId: credentials.empID });
   }
 
   getTodaysMatchs() {
