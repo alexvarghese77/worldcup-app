@@ -9,24 +9,24 @@
 </ion-header>
 
 
-<ion-content scroll="false" padding class="signUpContainer" ion-fixed>
+<ion-content padding class="signUpContainer" ion-fixed>
   <!-- <div class="container"> -->
 
-  <img src="assets/imgs/zabiLoginPage.png" no-bounce class="zabiSignUpPage">
-  <div scroll="false" class="inputcontainerSignUp">
-    <form [formGroup]="signup" (ngSubmit)="logForm()" scroll="false">
+  <img src="assets/imgs/zabiLoginPage.png" class="zabiSignUpPage">
+  <div class="inputcontainerSignUp">
+    <form [formGroup]="signup" (ngSubmit)="logForm()">
       <ion-item class="inputRow">
         <ion-input placeholder="Name" type="text" formControlName="name"></ion-input>
       </ion-item>
       <ion-item class="inputRow">
-        <ion-input placeholder="Email" type="text" formControlName="email"></ion-input>
+        <ion-input class="emailSignUp" placeholder="Email" type="text" formControlName="email"></ion-input>
         <p *ngIf="emailIsCorrect">error message: incorrect email</p>
       </ion-item>
       <ion-item class="inputRow">
         <ion-input placeholder="Mobile" type="number" formControlName="mobile"></ion-input>
       </ion-item>
       <ion-item class="inputRow">
-        <ion-input placeholder="Password" type="password" formControlName="password"></ion-input>
+        <ion-input placeholder="Password (minimum 6 letetrs)" type="password" formControlName="password"></ion-input>
       </ion-item>
       <ion-item class="inputRow">
         <ion-input placeholder="Confirm Password" type="password" formControlName="cpassword"></ion-input>

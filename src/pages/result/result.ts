@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GameService } from '../../services/game.service';
 import { AuthService } from '../../services/auth.service';
+import { DatePipe } from '@angular/common';
 /**
  * Generated class for the ResultPage page.
  *
@@ -17,14 +18,18 @@ import { AuthService } from '../../services/auth.service';
 export class ResultPage {
   todaysResults = [];
   isThereAnyResultTdy = true;
+  todayDate = '';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private gameservice: GameService,
-    private authService: AuthService
+    private authService: AuthService,
+    private datepipe: DatePipe
   ) {
     //gameservice.getMatchPrizeWinners();
-
+    let day = new Date();
+    var yesterday = new Date(day);
+    this.todayDate = this.datepipe.transform(yesterday, 'dd MMM yyyy');
     authService
       .getYesterdaysResults()
       .then(result => {

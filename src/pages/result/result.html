@@ -18,6 +18,7 @@
 
 
 <ion-content *ngIf="isThereAnyResultTdy" padding class="resultPageContainer">
+  <div class="today">{{todayDate}}</div>
   <ion-card class="cardResults" *ngFor="let item of todaysResults">
     <ion-card-content class="cardResultContecnt">
       <div class="team1flag">
@@ -39,8 +40,8 @@
 
       <ion-col>
         <div class="winners">WINNERS</div>
-        <div>1.&nbsp;{{item.user1}}</div>
-        <div>2.&nbsp; {{item.user2}}</div>
+        <div *ngIf="item.user1">1.&nbsp;{{item.user1}}</div>
+        <div *ngIf="item.user2">2.&nbsp; {{item.user2}}</div>
       </ion-col>
     </ion-row>
   </ion-card>
