@@ -4,6 +4,7 @@ import { TabsPage } from '../tabs/tabs';
 import { SignupPage } from '../signup/signup';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 
 //import { FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
@@ -32,7 +33,8 @@ export class LoginPage {
     public navCtrl: NavController,
     public menu: MenuController,
     private alertCtrl: AlertController,
-    private gameservice: GameService
+    private gameservice: GameService,
+    private toastCtrl: ToastController
   ) {
     this.todo = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, ValidateEmail])],
@@ -84,5 +86,87 @@ export class LoginPage {
   ionViewWillLeave() {
     // enable the root left menu when leaving this page
     this.menu.enable(true);
+  }
+  frgtPwd() {
+    let alert = this.alertCtrl.create({
+      title: 'Reset Password',
+      message: 'Please enter your registered email address',
+      enableBackdropDismiss: false,
+      inputs: [
+        {
+          name: 'username',
+          placeholder: 'Email'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Reset Password',
+          role: 'cancel',
+          handler: data => {
+            if (data.username) {
+              var email, toastM;
+              this.validateEmail(data.username)
+                ? this.auth
+                    .resetPassword(data.username)
+                    .then(result => {
+                      const alert = this.alertCtrl.create({
+                        title: 'Password Reset',
+                        message:
+                          'Please check the your email for the reset password link!',
+                        buttons: [
+                          {
+                            text: 'OK',
+                            role: 'cancel',
+                            handler: () => {
+                              alert.dismiss();
+                            }
+                          }
+                        ]
+                      });
+                      alert.present();
+                    })
+                    .catch(error => {
+                      let toast = this.toastCtrl.create({
+                        message: 'Not a registered email addrress',
+                        duration: 3000,
+                        position: 'top'
+                      });
+                      toast.present();
+                    })
+                : (toastM = this.toastCtrl.create({
+                    message: 'Please Enter valid email',
+                    duration: 3000,
+                    position: 'top'
+                  }));
+              toastM.present();
+              return;
+            } else {
+              let toastM = this.toastCtrl.create({
+                message: 'Please Enter valid email',
+                duration: 3000,
+                position: 'top'
+              });
+              toastM.present();
+              return;
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+  validateEmail(username) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(username.toLowerCase())) {
+      return true;
+    }
+    return false;
   }
 }

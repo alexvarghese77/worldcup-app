@@ -89,7 +89,7 @@ export class MyApp {
       { title: 'Leaderboard', icon: 'md-trophy', component: LeaderboardPage },
       { title: 'Leaderboard', icon: 'md-trophy', component: LeaderboardPage },
       {
-        title: 'Howto Play',
+        title: 'How to Play',
         icon: 'md-game-controller-b',
         component: HowToPlayPage
       },
@@ -132,7 +132,7 @@ export class MyApp {
     }
   }*/
   setUserDetails(name) {
-    this.name = name;
+    this.name = name.toUpperCase();
     //this.point=point;
   }
 }

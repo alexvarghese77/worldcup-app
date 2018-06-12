@@ -15,7 +15,9 @@
           <!-- <ion-label>Password</ion-label> -->
           <ion-input class="input" placeholder="Password" type="password" formControlName="password"></ion-input>
         </ion-item>
-        <ion-label class="frgtpwd">Forgot Password?</ion-label>
+        <ion-label class="frgtpwd">
+          <b (click)="frgtPwd()">Forgot Password?</b>
+        </ion-label>
         <button class="loginButton" ion-button type="submit" [disabled]="!todo.valid">Sign In</button>
       </form>
       <ion-label class="frgtpwd">Don't have an account?

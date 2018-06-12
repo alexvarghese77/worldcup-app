@@ -18,7 +18,7 @@
           {{item.challenge}}
         </div>
         <div *ngIf="item.inputBox" class="inputBox">
-          <input class="input" value="{{item.ans}}" placeholder="here" id="{{item.cId}}" type="text">
+          <input class="input" value="{{item.ans}}" placeholder="Here" id="{{item.cId}}" type="text">
           <button class="saveButton" (click)="saveChallangeInput(item.cId,item.date,item.time)">
             Predict
           </button>

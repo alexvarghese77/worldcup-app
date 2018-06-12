@@ -28,6 +28,9 @@ export class AuthService {
       credentials.password
     );
   }
+  resetPassword(email) {
+    return this.afAuth.auth.sendPasswordResetEmail(email).then(res => {debugger});
+  }
 
   // return firebase
   signUp(credentials) {
