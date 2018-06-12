@@ -112,7 +112,7 @@ export class HomePage {
 
     this.authService.getCurrentVersion().then(result => {
       console.log('here', result);
-      if (result['v'] === 2) {
+      if (result['v'] === 3) {
         const alert = this.alertCtrl.create({
           title: 'Mandatory Update!!',
           message:
