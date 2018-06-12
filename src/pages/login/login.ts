@@ -53,8 +53,9 @@ export class LoginPage {
       .then(
         () => {
           this.storage.setAuth(credentials).then(result => {
-            this.gameservice.getUserDetails();
-            this.navCtrl.setRoot(TabsPage);
+            this.navCtrl.setRoot(TabsPage).then(res => {
+              this.gameservice.getUserDetails();
+            });
           });
         }
 
@@ -112,41 +113,44 @@ export class LoginPage {
           handler: data => {
             if (data.username) {
               var email, toastM;
-              this.validateEmail(data.username)
-                ? this.auth
-                    .resetPassword(data.username)
-                    .then(result => {
-                      const alert = this.alertCtrl.create({
-                        title: 'Password Reset',
-                        message:
-                          'Please check the your email for the reset password link!',
-                        buttons: [
-                          {
-                            text: 'OK',
-                            role: 'cancel',
-                            handler: () => {
-                              alert.dismiss();
-                            }
+              if (this.validateEmail(data.username)) {
+                this.auth
+                  .resetPassword(data.username)
+                  .then(result => {
+                    const alert = this.alertCtrl.create({
+                      title: 'Password Reset',
+                      message:
+                        'Please check the your email for the reset password link!',
+                      buttons: [
+                        {
+                          text: 'OK',
+                          role: 'cancel',
+                          handler: () => {
+                            alert.dismiss();
                           }
-                        ]
-                      });
-                      alert.present();
-                    })
-                    .catch(error => {
-                      let toast = this.toastCtrl.create({
-                        message: 'Not a registered email addrress',
-                        duration: 3000,
-                        position: 'top'
-                      });
-                      toast.present();
-                    })
-                : (toastM = this.toastCtrl.create({
-                    message: 'Please Enter valid email',
-                    duration: 3000,
-                    position: 'top'
-                  }));
-              toastM.present();
-              return;
+                        }
+                      ]
+                    });
+                    alert.present();
+                  })
+                  .catch(error => {
+                    let toast = this.toastCtrl.create({
+                      message: 'Not a registered email addrress',
+                      duration: 3000,
+                      position: 'top'
+                    });
+                    toast.present();
+                    return false;
+                  });
+              } else {
+                toastM = this.toastCtrl.create({
+                  message: 'Please Enter valid email',
+                  duration: 3000,
+                  position: 'top'
+                });
+                toastM.present();
+                return false;
+              }
             } else {
               let toastM = this.toastCtrl.create({
                 message: 'Please Enter valid email',
@@ -154,7 +158,7 @@ export class LoginPage {
                 position: 'top'
               });
               toastM.present();
-              return;
+              return false;
             }
           }
         }

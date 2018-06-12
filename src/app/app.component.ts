@@ -102,8 +102,27 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
   logout() {
-    this.storage.clearstorage();
-    this.nav.setRoot(LoginPage);
+    const alert = this.alertCtrl.create({
+      title: 'Logout!!',
+      message: 'Do you want to logot?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Application exit prevented!');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.storage.clearstorage();
+            this.nav.setRoot(LoginPage);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   initializeApp() {
