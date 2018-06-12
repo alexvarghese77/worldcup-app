@@ -5,7 +5,6 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <button class="backButton" ion-button icon-only back-button (click)="backButtonClick()">
       <ion-icon name="arrow-back">
@@ -25,31 +24,34 @@
     <li>Click on each match to predict the goal.</li>
     <li>Goal limit is 35.</li>
     <li>Goal predicted can be changed until the timer freezes.</li>
-    <li>Predictions are on daily basis.</li>
+    <li>Predictions will be on daily basis.</li>
+    <li>Winners will be picked based only on the Full time score(90 minutes/120 minutes)</li>
+    <li>The penalty shootout goals will not be considered for the result.</li>
     <li>Every correct goal prediction will be awarded +10 points. </li>
     <li>The points gained will be carried over to the world cup finals.</li>
-    <li>Each match will have two prediction winners. </li>
-    <li>In case of more than two correct entries, two winners will be selected on lot basis.</li>
-    <li>An entry will not be considered, if match winner predicted is correct, but the goals predicted are wrong. </li>
+    <li>Each match will have one prediction winners. </li>
+    <li>In case of more than one correct entries, winners will be selected on lot basis.</li>
+    <!-- <li>An entry will not be considered, if match winner predicted is correct, 
+      but the goals predicted are wrong. </li> -->
   </ul>
 
   <h2>Mega Challenges</h2>
   <ul>
     <li>Five winners will be selected on lot basis for below predictions:
       <ul>
-        <li>Champioship </li>
-        <li>Runner Up </li>
+        <li>World Cup Winner </li>
+        <li>World Cup Runner Up </li>
         <li>Golden Ball </li>
         <li>Golden Boot </li>
-        <li>Golden Ball </li>
+        <li>Golden Glove </li>
       </ul>
     </li>
-    <li>The mega challenge freezes at end of first game week.</li>
+    <li>The mega challenge will freeze on 20th June 2018</li>
   </ul>
-  <h2>Other Challenges</h2>
+  <!-- <h2>Other Challenges</h2>
   <ul>
     <li> The contest is on daily/weekly basis </li>
     <li> Every correct prediction will be awarded +5 points.</li>
     <li> • The points gained will be carried over to the world cup finals.</li>
-  </ul>
+  </ul> -->
 </ion-content>
