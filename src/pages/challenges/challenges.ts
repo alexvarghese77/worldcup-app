@@ -142,7 +142,7 @@ export class ChallengesPage {
 
   timerfn(item) {
     var timeArr = item.date.split('-');
-    var time = `${timeArr[1]}-${timeArr[0]}-${timeArr[2]} ${item.time}`;
+    var time = `${timeArr[1]}/${timeArr[0]}/${timeArr[2]} ${item.time}`;
     var countDownDate = new Date(time).getTime();
     var now = new Date().getTime();
     var distance = countDownDate - now;

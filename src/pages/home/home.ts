@@ -112,7 +112,7 @@ export class HomePage {
 
     this.authService.getCurrentVersion().then(result => {
       console.log('here', result);
-      if (result['v'] === 2) {
+      if (result['v'] === 3) {
         const alert = this.alertCtrl.create({
           title: 'Mandatory Update!!',
           message:
@@ -153,7 +153,7 @@ export class HomePage {
 
   testfn(item) {
     var timeArr = item.date.split('-');
-    var time = `${timeArr[1]}-${timeArr[0]}-${timeArr[2]} ${item.time}`;
+    var time = `${timeArr[1]}/${timeArr[0]}/${timeArr[2]} ${item.time}`;
     var countDownDate = new Date(time).getTime();
     var now = new Date().getTime();
     var distance = countDownDate - now;

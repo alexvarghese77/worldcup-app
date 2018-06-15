@@ -104,7 +104,7 @@ export class MyApp {
   logout() {
     const alert = this.alertCtrl.create({
       title: 'Logout!!',
-      message: 'Do you want to logot?',
+      message: 'Do you want to logout?',
       buttons: [
         {
           text: 'No',
