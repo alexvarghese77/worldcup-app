@@ -87,7 +87,6 @@ export class HomePage {
       // console.log('Match details', item);
       this.navCtrl.setRoot(GoalPredictionPage, { data: item });
     } else {
-      this.authService.updateIsPredicable(item);
       const alert = this.alertCtrl.create({
         title: 'Time Up!!',
         message: 'Prediction time over!!',
