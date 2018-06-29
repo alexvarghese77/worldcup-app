@@ -83,10 +83,11 @@ export class HomePage {
   }
 
   goToPrediction(item) {
-    if (this.testfn(item) !== 'Time Up') {
+    if (this.testfn(item) !== 'Time Up' && !item.flag) {
       // console.log('Match details', item);
       this.navCtrl.setRoot(GoalPredictionPage, { data: item });
     } else {
+      this.authService.updateIsPredicable(item);
       const alert = this.alertCtrl.create({
         title: 'Time Up!!',
         message: 'Prediction time over!!',
@@ -112,7 +113,7 @@ export class HomePage {
 
     this.authService.getCurrentVersion().then(result => {
       console.log('here', result);
-      if (result['v'] === 3) {
+      if (result['v'] === 4) {
         const alert = this.alertCtrl.create({
           title: 'Mandatory Update!!',
           message:

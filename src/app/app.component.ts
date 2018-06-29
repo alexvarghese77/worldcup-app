@@ -87,13 +87,13 @@ export class MyApp {
     // // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Leaderboard', icon: 'md-trophy', component: LeaderboardPage },
-      { title: 'Leaderboard', icon: 'md-trophy', component: LeaderboardPage },
+
       {
         title: 'How to Play',
         icon: 'md-game-controller-b',
         component: HowToPlayPage
-      },
-      { title: 'Feedback', icon: 'md-paper', component: FeedbackPage }
+      }
+      // { title: 'Feedback', icon: 'md-paper', component: FeedbackPage }
     ];
   }
   openPage(page) {

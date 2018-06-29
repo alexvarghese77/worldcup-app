@@ -29,6 +29,7 @@ export class ResultPage {
     //gameservice.getMatchPrizeWinners();
     let day = new Date();
     var yesterday = new Date(day);
+    yesterday.setDate(day.getDate() - 1);
     this.todayDate = this.datepipe.transform(yesterday, 'dd MMM yyyy');
     authService
       .getYesterdaysResults()
